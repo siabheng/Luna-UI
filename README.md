@@ -2942,7 +2942,6 @@ function Luna:CreateWindow(WindowSettings)
 					ToggleSwitch = Elements.Template.Toggle.toggle:Clone()
 					ToggleSwitch.Parent = Bind
 					ToggleSwitch.AnchorPoint = Vector2.new(1, Bind.BindFrame.AnchorPoint.Y)
-					ToggleSwitch.Size = UDim2.new(0, 40, 0, 20)
 					ToggleSwitch.ZIndex = 3
 					ToggleSwitch.Active = false
 					ToggleSwitch.val.ZIndex = 4
@@ -4836,7 +4835,6 @@ function Luna:CreateWindow(WindowSettings)
 				ToggleSwitch = Elements.Template.Toggle.toggle:Clone()
 				ToggleSwitch.Parent = Bind
 				ToggleSwitch.AnchorPoint = Vector2.new(1, Bind.BindFrame.AnchorPoint.Y)
-				ToggleSwitch.Size = UDim2.new(0, 40, 0, 20)
 				ToggleSwitch.ZIndex = 3
 				ToggleSwitch.Active = false
 				ToggleSwitch.val.ZIndex = 4
