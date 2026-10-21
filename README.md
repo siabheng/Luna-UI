@@ -2913,6 +2913,7 @@ function Luna:CreateWindow(WindowSettings)
 					Name = "Button",
 					Description = nil,
 					CurrentBind = "Q",
+					CurrentValue = false,
 					HoldToInteract = false,
 					Callback = function(Active)
 
@@ -2922,7 +2923,7 @@ function Luna:CreateWindow(WindowSettings)
 					end,
 				}, ButtonSettings or {})
 
-				local ButtonV = { Class = "ButtonBind", IgnoreConfig = false, Settings = ButtonSettings, Active = false, CurrentBind = ButtonSettings.CurrentBind }
+				local ButtonV = { Class = "ButtonBind", IgnoreConfig = false, Settings = ButtonSettings, Active = false, CurrentValue = ButtonSettings.CurrentValue == true, CurrentBind = ButtonSettings.CurrentBind }
 
 				local CheckingForKey = false
 
@@ -2978,6 +2979,8 @@ function Luna:CreateWindow(WindowSettings)
 
 				local function ApplyState(State)
 					ButtonV.Active = State
+					ButtonV.CurrentValue = State
+					ButtonSettings.CurrentValue = State
 					if State then
 						tween(Bind.UIStroke, {Color = Color3.fromRGB(136, 131, 163), Transparency = 0.35})
 						tween(Bind.Title, {TextColor3 = Color3.fromRGB(255, 255, 255)})
@@ -3007,6 +3010,10 @@ function Luna:CreateWindow(WindowSettings)
 						TweenService:Create(Bind, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(32, 30, 38)}):Play()
 						TweenService:Create(Bind.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
 					end
+				end
+
+				if ButtonSettings.CurrentValue then
+					Fire(true)
 				end
 
 				Bind.BindFrame.BindBox.Text = ButtonSettings.CurrentBind
@@ -3099,16 +3106,20 @@ function Luna:CreateWindow(WindowSettings)
 				end)
 
 				function ButtonV:Set(NewButtonSettings)
-					local NewActive = (NewButtonSettings or {}).Active
-
 					NewButtonSettings = Kwargify({
 						Name = ButtonSettings.Name,
 						Description = ButtonSettings.Description,
 						CurrentBind = ButtonSettings.CurrentBind,
+						CurrentValue = ButtonSettings.CurrentValue,
 						HoldToInteract = ButtonSettings.HoldToInteract,
 						Callback = ButtonSettings.Callback,
 						OnChangedCallback = ButtonSettings.OnChangedCallback
 					}, NewButtonSettings or {})
+
+					local NewActive = NewButtonSettings.Active
+					if NewActive == nil then
+						NewActive = NewButtonSettings.CurrentValue
+					end
 
 					ButtonV.Settings = NewButtonSettings
 					ButtonSettings = NewButtonSettings
@@ -3140,6 +3151,8 @@ function Luna:CreateWindow(WindowSettings)
 
 				return ButtonV
 			end
+
+			Section.CreateToggleBind = Section.CreateButtonBind
 
 			-- Label
 			function Section:CreateLabel(LabelSettings)
@@ -4740,6 +4753,7 @@ function Luna:CreateWindow(WindowSettings)
 				Name = "Button",
 				Description = nil,
 				CurrentBind = "Q",
+				CurrentValue = false,
 				HoldToInteract = false,
 				Callback = function(Active)
 
@@ -4749,7 +4763,7 @@ function Luna:CreateWindow(WindowSettings)
 				end,
 			}, ButtonSettings or {})
 
-			local ButtonV = { Class = "ButtonBind", IgnoreConfig = false, Settings = ButtonSettings, Active = false, CurrentBind = ButtonSettings.CurrentBind }
+			local ButtonV = { Class = "ButtonBind", IgnoreConfig = false, Settings = ButtonSettings, Active = false, CurrentValue = ButtonSettings.CurrentValue == true, CurrentBind = ButtonSettings.CurrentBind }
 
 			local CheckingForKey = false
 
@@ -4805,6 +4819,8 @@ function Luna:CreateWindow(WindowSettings)
 
 			local function ApplyState(State)
 				ButtonV.Active = State
+				ButtonV.CurrentValue = State
+				ButtonSettings.CurrentValue = State
 				if State then
 					tween(Bind.UIStroke, {Color = Color3.fromRGB(136, 131, 163), Transparency = 0.35})
 					tween(Bind.Title, {TextColor3 = Color3.fromRGB(255, 255, 255)})
@@ -4834,6 +4850,10 @@ function Luna:CreateWindow(WindowSettings)
 					TweenService:Create(Bind, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(32, 30, 38)}):Play()
 					TweenService:Create(Bind.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
 				end
+			end
+
+			if ButtonSettings.CurrentValue then
+				Fire(true)
 			end
 
 			Bind.BindFrame.BindBox.Text = ButtonSettings.CurrentBind
@@ -4926,16 +4946,20 @@ function Luna:CreateWindow(WindowSettings)
 			end)
 
 			function ButtonV:Set(NewButtonSettings)
-				local NewActive = (NewButtonSettings or {}).Active
-
 				NewButtonSettings = Kwargify({
 					Name = ButtonSettings.Name,
 					Description = ButtonSettings.Description,
 					CurrentBind = ButtonSettings.CurrentBind,
+					CurrentValue = ButtonSettings.CurrentValue,
 					HoldToInteract = ButtonSettings.HoldToInteract,
 					Callback = ButtonSettings.Callback,
 					OnChangedCallback = ButtonSettings.OnChangedCallback
 				}, NewButtonSettings or {})
+
+				local NewActive = NewButtonSettings.Active
+				if NewActive == nil then
+					NewActive = NewButtonSettings.CurrentValue
+				end
 
 				ButtonV.Settings = NewButtonSettings
 				ButtonSettings = NewButtonSettings
@@ -4967,6 +4991,8 @@ function Luna:CreateWindow(WindowSettings)
 
 			return ButtonV
 		end
+
+		Tab.CreateToggleBind = Tab.CreateButtonBind
 
 		-- Label
 		function Tab:CreateLabel(LabelSettings)
@@ -7415,12 +7441,13 @@ if isStudio then
 			end
 		end,
 	})
-	Tabs.Main2:CreateButtonBind({
-		Name = "Button + Keybind Example",
-		Description = "Click the button or press the bind to toggle it",
+	Tabs.Main2:CreateToggleBind({
+		Name = "Toggle + Keybind Example",
+		Description = "Click the toggle or press the bind to switch it",
 		CurrentBind = "F",
+		CurrentValue = false,
 		Callback = function(Active)
-			print("Button bind active:", Active)
+			print("Toggle bind active:", Active)
 		end,
 	})
 	Tabs.Main2:CreateInput({
