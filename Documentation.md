@@ -138,23 +138,23 @@ local Button = Section:CreateButton({
 
 ### Button with a keybind
 
-This library adds `CreateButtonBind` to combine a clickable button and a rebindable key selector.
+`CreateButtonBind` combines a clickable button and a rebindable key selector.
 
 ```lua
 local RunAction = Section:CreateButtonBind({
     Name = "Run action",
     Description = "Click or press the key",
     CurrentBind = "Q",
-    Callback = function()
-        print("Action triggered")
+    Callback = function(active)
+        print("Action triggered, active:", active)
     end,
     OnChangedCallback = function(keyName)
         print("New key:", keyName)
     end,
-})
+}, "RunActionFlag")
 ```
 
-`CurrentBind` is a Roblox `Enum.KeyCode` name such as `"Q"` or `"F"`. Clicking the button or pressing the bound key invokes the same callback. `OnChangedCallback` receives the new key name as a string. `:Set({...})` updates the button and key settings; `:Destroy()` also disconnects the key listener.
+`CurrentBind` is a Roblox `Enum.KeyCode` name such as `"Q"` or `"F"`. Clicking the button or pressing the bound key toggles the button's active state and invokes the callback with that state, so a callback with no parameters works as well. Click the key box and press a key to rebind; `OnChangedCallback` receives the new key name as a string. Set `HoldToInteract = true` to fire the callback while the key is held instead of toggling on each press. The second argument is an optional configuration flag. `:Set({...})` updates the button and key settings, and `:Destroy()` also disconnects the key listener so the bind stops responding.
 
 ### Toggle
 
@@ -297,7 +297,7 @@ print(Toggle.Settings.Name)
 Toggle:Destroy()
 ```
 
-Value properties depend on the element: for example, toggles and sliders expose `CurrentValue`, dropdowns expose `CurrentOption`, and color picker callbacks receive a `Color3`.
+Value properties depend on the element: for example, toggles and sliders expose `CurrentValue`, dropdowns expose `CurrentOption`, `CreateButtonBind` exposes `CurrentBind` and `Active`, and color picker callbacks receive a `Color3`.
 
 ## Configuration and theme helpers
 
@@ -308,7 +308,7 @@ local ConfigTab = Window:CreateTab({Name = "Configuration"})
 ConfigTab:BuildConfigSection()
 ```
 
-Configuration persistence uses executor file APIs and is unavailable in Studio. Elements must have unique flags to participate in configuration saving. The library also provides:
+Configuration persistence uses executor file APIs and is unavailable in Studio. Elements must have unique flags to participate in configuration saving. Toggles, sliders, inputs, dropdowns, color pickers, and button-binds are all saved when they are given a flag. The library also provides:
 
 ```lua
 Luna:SaveConfig("settings-name")
