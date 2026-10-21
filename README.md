@@ -2940,6 +2940,8 @@ function Luna:CreateWindow(WindowSettings)
 				local ToggleSwitch
 				if IsToggleBind then
 					ToggleSwitch = Elements.Template.Toggle.toggle:Clone()
+					local ToggleTemplate = Elements.Template.Toggle.toggle
+					ToggleSwitch.Size = UDim2.fromOffset(ToggleTemplate.AbsoluteSize.X, ToggleTemplate.AbsoluteSize.Y)
 					ToggleSwitch.Parent = Bind
 					ToggleSwitch.AnchorPoint = Vector2.new(1, Bind.BindFrame.AnchorPoint.Y)
 					ToggleSwitch.ZIndex = 3
@@ -4833,6 +4835,8 @@ function Luna:CreateWindow(WindowSettings)
 			local ToggleSwitch
 			if IsToggleBind then
 				ToggleSwitch = Elements.Template.Toggle.toggle:Clone()
+				local ToggleTemplate = Elements.Template.Toggle.toggle
+				ToggleSwitch.Size = UDim2.fromOffset(ToggleTemplate.AbsoluteSize.X, ToggleTemplate.AbsoluteSize.Y)
 				ToggleSwitch.Parent = Bind
 				ToggleSwitch.AnchorPoint = Vector2.new(1, Bind.BindFrame.AnchorPoint.Y)
 				ToggleSwitch.ZIndex = 3
