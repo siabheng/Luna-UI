@@ -1224,7 +1224,7 @@ local KeySystem : Frame = Main.KeySystem
 --    works for elements created inside a Section
 --  * no more bare early return
 -- ============================================================================
-local function CreateToggleBind(owner, Window, ToggleBindSettings, Flag)
+local function CreateToggleBind(owner, Window, ToggleBindSettings, Flag, BindFrameSize)
 
 	ToggleBindSettings = Kwargify({
 		Name = "Toggle Bind",
@@ -1351,7 +1351,7 @@ local function CreateToggleBind(owner, Window, ToggleBindSettings, Flag)
 		BindFrame.Name = "BindFrame"
 		BindFrame.AnchorPoint = Vector2.new(1, 0.5)
 		BindFrame.Position = UDim2.new(1, -12, 0.5, 0)
-		BindFrame.Size = UDim2.new(0, 68, 0, 28)
+		BindFrame.Size = BindFrameSize or UDim2.new(0, 68, 0, 28)
 		BindFrame.BackgroundTransparency = 0.9
 		BindFrame.Visible = true
 		BindFrame.ZIndex = 20
@@ -1453,7 +1453,7 @@ end
 
 -- CreateButtonBind now produces the nicer toggle + keybind combo.
 local function CreateButtonBind(owner, Window, ButtonBindSettings)
-	return CreateToggleBind(owner, Window, ButtonBindSettings)
+	return CreateToggleBind(owner, Window, ButtonBindSettings, nil, UDim2.new(0, 64, 0, 26))
 end
 
 local function Draggable(Bar, Window, enableTaptic, tapticOffset)
