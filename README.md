@@ -2906,7 +2906,7 @@ function Luna:CreateWindow(WindowSettings)
 			end
 
 			-- Button With Keybind
-			function Section:CreateButtonBind(ButtonSettings, Flag)
+			function Section:CreateButtonBind(ButtonSettings, Flag, IsToggleBind)
 				TabPage.Position = UDim2.new(0,0,0,28)
 
 				ButtonSettings = Kwargify({
@@ -2936,6 +2936,17 @@ function Luna:CreateWindow(WindowSettings)
 
 				Bind.Visible = true
 				Bind.Parent = TabPage
+
+				local ToggleSwitch
+				if IsToggleBind then
+					ToggleSwitch = Elements.Template.Toggle.toggle:Clone()
+					ToggleSwitch.Parent = Bind
+					ToggleSwitch.AnchorPoint = Vector2.new(1, Bind.BindFrame.AnchorPoint.Y)
+					ToggleSwitch.Size = UDim2.new(0, 40, 0, 20)
+					ToggleSwitch.ZIndex = 3
+					ToggleSwitch.Active = false
+					ToggleSwitch.val.ZIndex = 4
+				end
 
 				Bind.Name = ButtonSettings.Name
 				Bind.Title.Text = ButtonSettings.Name
@@ -2981,6 +2992,21 @@ function Luna:CreateWindow(WindowSettings)
 					ButtonV.Active = State
 					ButtonV.CurrentValue = State
 					ButtonSettings.CurrentValue = State
+					if ToggleSwitch then
+						if State then
+							ToggleSwitch.color.Enabled = true
+							tween(ToggleSwitch, {BackgroundTransparency = 0})
+							ToggleSwitch.UIStroke.color.Enabled = true
+							tween(ToggleSwitch.UIStroke, {Color = Color3.fromRGB(255, 255, 255)})
+							tween(ToggleSwitch.val, {BackgroundColor3 = Color3.fromRGB(255, 255, 255), Position = UDim2.new(1, -23, 0.5, 0), BackgroundTransparency = 0.45})
+						else
+							ToggleSwitch.color.Enabled = false
+							ToggleSwitch.UIStroke.color.Enabled = false
+							ToggleSwitch.UIStroke.Color = Color3.fromRGB(97, 97, 97)
+							tween(ToggleSwitch, {BackgroundTransparency = 1})
+							tween(ToggleSwitch.val, {BackgroundColor3 = Color3.fromRGB(97, 97, 97), Position = UDim2.new(0, 5, 0.5, 0), BackgroundTransparency = 0})
+						end
+					end
 					if State then
 						tween(Bind.UIStroke, {Color = Color3.fromRGB(136, 131, 163), Transparency = 0.35})
 						tween(Bind.Title, {TextColor3 = Color3.fromRGB(255, 255, 255)})
@@ -3012,12 +3038,21 @@ function Luna:CreateWindow(WindowSettings)
 					end
 				end
 
+				ApplyState(ButtonSettings.CurrentValue == true)
 				if ButtonSettings.CurrentValue then
 					Fire(true)
 				end
 
 				Bind.BindFrame.BindBox.Text = ButtonSettings.CurrentBind
 				Bind.BindFrame.BindBox.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 42)
+				if ToggleSwitch then
+					local keyWidth = math.max(46, Bind.BindFrame.BindBox.TextBounds.X + 20)
+					local framePosition = Bind.BindFrame.Position
+					Bind.BindFrame.AnchorPoint = Vector2.new(1, Bind.BindFrame.AnchorPoint.Y)
+					Bind.BindFrame.Position = UDim2.new(1, -16, framePosition.Y.Scale, framePosition.Y.Offset)
+					Bind.BindFrame.Size = UDim2.new(0, keyWidth, 0, 30)
+					ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), framePosition.Y.Scale, framePosition.Y.Offset)
+				end
 
 				Bind.BindFrame.BindBox.Focused:Connect(function()
 					CheckingForKey = true
@@ -3102,10 +3137,17 @@ function Luna:CreateWindow(WindowSettings)
 				end)
 
 				Bind.BindFrame.BindBox:GetPropertyChangedSignal("Text"):Connect(function()
-					TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 30)}):Play()
+					local keyWidth = math.max(46, Bind.BindFrame.BindBox.TextBounds.X + 20)
+					if ToggleSwitch then
+						TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, keyWidth, 0, 30)}):Play()
+						ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), Bind.BindFrame.Position.Y.Scale, Bind.BindFrame.Position.Y.Offset)
+					else
+						TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 30)}):Play()
+					end
 				end)
 
 				function ButtonV:Set(NewButtonSettings)
+					local StateWasSet = NewButtonSettings ~= nil and (NewButtonSettings.Active ~= nil or NewButtonSettings.CurrentValue ~= nil)
 					NewButtonSettings = Kwargify({
 						Name = ButtonSettings.Name,
 						Description = ButtonSettings.Description,
@@ -3131,11 +3173,21 @@ function Luna:CreateWindow(WindowSettings)
 					end
 
 					Bind.BindFrame.BindBox.Text = ButtonSettings.CurrentBind
-					Bind.BindFrame.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 42)
+					local keyWidth = math.max(46, Bind.BindFrame.BindBox.TextBounds.X + 20)
+					if ToggleSwitch then
+						Bind.BindFrame.Size = UDim2.new(0, keyWidth, 0, 30)
+						ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), Bind.BindFrame.Position.Y.Scale, Bind.BindFrame.Position.Y.Offset)
+					else
+						Bind.BindFrame.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 42)
+					end
 					ButtonV.CurrentBind = ButtonSettings.CurrentBind
 
 					if NewActive ~= nil then
-						ApplyState(NewActive)
+						if StateWasSet then
+							Fire(NewActive)
+						else
+							ApplyState(NewActive)
+						end
 					end
 				end
 
@@ -3152,7 +3204,9 @@ function Luna:CreateWindow(WindowSettings)
 				return ButtonV
 			end
 
-			Section.CreateToggleBind = Section.CreateButtonBind
+			function Section:CreateToggleBind(ButtonSettings, Flag)
+				return self:CreateButtonBind(ButtonSettings, Flag, true)
+			end
 
 			-- Label
 			function Section:CreateLabel(LabelSettings)
@@ -4747,7 +4801,7 @@ function Luna:CreateWindow(WindowSettings)
 		end
 
 		-- Button With Keybind
-		function Tab:CreateButtonBind(ButtonSettings, Flag)
+		function Tab:CreateButtonBind(ButtonSettings, Flag, IsToggleBind)
 
 			ButtonSettings = Kwargify({
 				Name = "Button",
@@ -4776,6 +4830,17 @@ function Luna:CreateWindow(WindowSettings)
 
 			Bind.Visible = true
 			Bind.Parent = TabPage
+
+			local ToggleSwitch
+			if IsToggleBind then
+				ToggleSwitch = Elements.Template.Toggle.toggle:Clone()
+				ToggleSwitch.Parent = Bind
+				ToggleSwitch.AnchorPoint = Vector2.new(1, Bind.BindFrame.AnchorPoint.Y)
+				ToggleSwitch.Size = UDim2.new(0, 40, 0, 20)
+				ToggleSwitch.ZIndex = 3
+				ToggleSwitch.Active = false
+				ToggleSwitch.val.ZIndex = 4
+			end
 
 			Bind.Name = ButtonSettings.Name
 			Bind.Title.Text = ButtonSettings.Name
@@ -4821,6 +4886,21 @@ function Luna:CreateWindow(WindowSettings)
 				ButtonV.Active = State
 				ButtonV.CurrentValue = State
 				ButtonSettings.CurrentValue = State
+				if ToggleSwitch then
+					if State then
+						ToggleSwitch.color.Enabled = true
+						tween(ToggleSwitch, {BackgroundTransparency = 0})
+						ToggleSwitch.UIStroke.color.Enabled = true
+						tween(ToggleSwitch.UIStroke, {Color = Color3.fromRGB(255, 255, 255)})
+						tween(ToggleSwitch.val, {BackgroundColor3 = Color3.fromRGB(255, 255, 255), Position = UDim2.new(1, -23, 0.5, 0), BackgroundTransparency = 0.45})
+					else
+						ToggleSwitch.color.Enabled = false
+						ToggleSwitch.UIStroke.color.Enabled = false
+						ToggleSwitch.UIStroke.Color = Color3.fromRGB(97, 97, 97)
+						tween(ToggleSwitch, {BackgroundTransparency = 1})
+						tween(ToggleSwitch.val, {BackgroundColor3 = Color3.fromRGB(97, 97, 97), Position = UDim2.new(0, 5, 0.5, 0), BackgroundTransparency = 0})
+					end
+				end
 				if State then
 					tween(Bind.UIStroke, {Color = Color3.fromRGB(136, 131, 163), Transparency = 0.35})
 					tween(Bind.Title, {TextColor3 = Color3.fromRGB(255, 255, 255)})
@@ -4852,12 +4932,21 @@ function Luna:CreateWindow(WindowSettings)
 				end
 			end
 
+			ApplyState(ButtonSettings.CurrentValue == true)
 			if ButtonSettings.CurrentValue then
 				Fire(true)
 			end
 
 			Bind.BindFrame.BindBox.Text = ButtonSettings.CurrentBind
 			Bind.BindFrame.BindBox.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 42)
+			if ToggleSwitch then
+				local keyWidth = math.max(46, Bind.BindFrame.BindBox.TextBounds.X + 20)
+				local framePosition = Bind.BindFrame.Position
+				Bind.BindFrame.AnchorPoint = Vector2.new(1, Bind.BindFrame.AnchorPoint.Y)
+				Bind.BindFrame.Position = UDim2.new(1, -16, framePosition.Y.Scale, framePosition.Y.Offset)
+				Bind.BindFrame.Size = UDim2.new(0, keyWidth, 0, 30)
+				ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), framePosition.Y.Scale, framePosition.Y.Offset)
+			end
 
 			Bind.BindFrame.BindBox.Focused:Connect(function()
 				CheckingForKey = true
@@ -4942,10 +5031,17 @@ function Luna:CreateWindow(WindowSettings)
 			end)
 
 			Bind.BindFrame.BindBox:GetPropertyChangedSignal("Text"):Connect(function()
-				TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 30)}):Play()
+				local keyWidth = math.max(46, Bind.BindFrame.BindBox.TextBounds.X + 20)
+				if ToggleSwitch then
+					TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, keyWidth, 0, 30)}):Play()
+					ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), Bind.BindFrame.Position.Y.Scale, Bind.BindFrame.Position.Y.Offset)
+				else
+					TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 30)}):Play()
+				end
 			end)
 
 			function ButtonV:Set(NewButtonSettings)
+				local StateWasSet = NewButtonSettings ~= nil and (NewButtonSettings.Active ~= nil or NewButtonSettings.CurrentValue ~= nil)
 				NewButtonSettings = Kwargify({
 					Name = ButtonSettings.Name,
 					Description = ButtonSettings.Description,
@@ -4971,11 +5067,21 @@ function Luna:CreateWindow(WindowSettings)
 				end
 
 				Bind.BindFrame.BindBox.Text = ButtonSettings.CurrentBind
-				Bind.BindFrame.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 42)
+				local keyWidth = math.max(46, Bind.BindFrame.BindBox.TextBounds.X + 20)
+				if ToggleSwitch then
+					Bind.BindFrame.Size = UDim2.new(0, keyWidth, 0, 30)
+					ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), Bind.BindFrame.Position.Y.Scale, Bind.BindFrame.Position.Y.Offset)
+				else
+					Bind.BindFrame.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 42)
+				end
 				ButtonV.CurrentBind = ButtonSettings.CurrentBind
 
 				if NewActive ~= nil then
-					ApplyState(NewActive)
+					if StateWasSet then
+						Fire(NewActive)
+					else
+						ApplyState(NewActive)
+					end
 				end
 			end
 
@@ -4992,7 +5098,9 @@ function Luna:CreateWindow(WindowSettings)
 			return ButtonV
 		end
 
-		Tab.CreateToggleBind = Tab.CreateButtonBind
+		function Tab:CreateToggleBind(ButtonSettings, Flag)
+			return self:CreateButtonBind(ButtonSettings, Flag, true)
+		end
 
 		-- Label
 		function Tab:CreateLabel(LabelSettings)
@@ -6905,12 +7013,12 @@ function Luna:CreateWindow(WindowSettings)
 						type = "ButtonBind",
 						flag = Flag,
 						bind = data.CurrentBind,
-						state = data.Active
+						state = data.CurrentValue
 					}
 				end,
 				Load = function(Flag, data)
 					if Luna.Options[Flag] then
-						Luna.Options[Flag]:Set({ CurrentBind = data.bind, Active = data.state })
+						Luna.Options[Flag]:Set({ CurrentBind = data.bind, CurrentValue = data.state })
 					end
 				end
 			},
