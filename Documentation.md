@@ -136,25 +136,28 @@ local Button = Section:CreateButton({
 
 `Description` is optional. `Callback` is called without arguments.
 
-### Button with a keybind
+### Toggle with a keybind
 
-`CreateButtonBind` combines a clickable button and a rebindable key selector.
+`CreateToggleBind` combines a clickable toggle with a rebindable key selector. It is available on both tabs and sections.
 
 ```lua
-local RunAction = Section:CreateButtonBind({
-    Name = "Run action",
-    Description = "Click or press the key",
+local ToggleBind = Section:CreateToggleBind({
+    Name = "Auto action",
+    Description = "Click the toggle or press the key",
+    CurrentValue = false,
     CurrentBind = "Q",
     Callback = function(active)
-        print("Action triggered, active:", active)
+        print("Auto action enabled:", active)
     end,
     OnChangedCallback = function(keyName)
         print("New key:", keyName)
     end,
-}, "RunActionFlag")
+}, "AutoActionFlag")
 ```
 
-`CurrentBind` is a Roblox `Enum.KeyCode` name such as `"Q"` or `"F"`. Clicking the button or pressing the bound key toggles the button's active state and invokes the callback with that state, so a callback with no parameters works as well. Click the key box and press a key to rebind; `OnChangedCallback` receives the new key name as a string. Set `HoldToInteract = true` to fire the callback while the key is held instead of toggling on each press. The second argument is an optional configuration flag. `:Set({...})` updates the button and key settings, and `:Destroy()` also disconnects the key listener so the bind stops responding.
+`CurrentValue` defaults to `false` and sets the initial state; if it starts as `true`, the callback is called with `true` when the control is created. `CurrentBind` is a Roblox `Enum.KeyCode` name such as `"Q"` or `"F"`. Clicking the toggle or pressing the bound key switches the active state and calls `Callback` with the new boolean value. `OnChangedCallback` receives the new key name as a string when the key is rebound. `HoldToInteract = true` changes the key behavior to held-state callbacks rather than toggling on each press.
+
+`:Set({CurrentValue = true})` updates the active state and `:Set({CurrentBind = "F"})` updates the displayed bind; setting `Active` is also supported for compatibility with button-bind configs. `:Destroy()` disconnects the key listener. `CreateButtonBind` remains available as a backwards-compatible alias with the same behavior.
 
 ### Toggle
 
@@ -297,7 +300,7 @@ print(Toggle.Settings.Name)
 Toggle:Destroy()
 ```
 
-Value properties depend on the element: for example, toggles and sliders expose `CurrentValue`, dropdowns expose `CurrentOption`, `CreateButtonBind` exposes `CurrentBind` and `Active`, and color picker callbacks receive a `Color3`.
+Value properties depend on the element: for example, toggles, sliders, and toggle-binds expose `CurrentValue`; button-binds also expose `Active` and `CurrentBind`; dropdowns expose `CurrentOption`; and color picker callbacks receive a `Color3`.
 
 ## Configuration and theme helpers
 
@@ -308,7 +311,7 @@ local ConfigTab = Window:CreateTab({Name = "Configuration"})
 ConfigTab:BuildConfigSection()
 ```
 
-Configuration persistence uses executor file APIs and is unavailable in Studio. Elements must have unique flags to participate in configuration saving. Toggles, sliders, inputs, dropdowns, color pickers, and button-binds are all saved when they are given a flag. The library also provides:
+Configuration persistence uses executor file APIs and is unavailable in Studio. Elements must have unique flags to participate in configuration saving. Toggle-binds are saved with their current key and active state. The library also provides:
 
 ```lua
 Luna:SaveConfig("settings-name")
