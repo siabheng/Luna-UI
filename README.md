@@ -1,20 +1,17 @@
 --[[
 
-
-
 ██╗     ██╗   ██╗███╗   ██╗ █████╗     ██╗███╗   ██╗████████╗███████╗██████╗ ███████╗ █████╗  ██████╗███████╗    ███████╗██╗   ██╗██╗████████╗███████╗
 ██║     ██║   ██║████╗  ██║██╔══██╗    ██║████╗  ██║╚══██╔══╝██╔════╝██╔══██╗██╔════╝██╔══██╗██╔════╝██╔════╝    ██╔════╝██║   ██║██║╚══██╔══╝██╔════╝
-██║     ██║   ██║██╔██╗ ██║███████║    ██║██╔██╗ ██║   ██║   █████╗  ██████╔╝█████╗  ███████║██║     █████╗      ███████╗██║   ██║██║   ██║   █████╗  
-██║     ██║   ██║██║╚██╗██║██╔══██║    ██║██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗██╔══╝  ██╔══██║██║     ██╔══╝      ╚════██║██║   ██║██║   ██║   ██╔══╝  
+██║     ██║   ██║██╔██╗ ██║███████║    ██║██╔██╗ ██║   ██║   █████╗  ██████╔╝█████╗  ███████║██║     █████╗      ███████╗██║   ██║██║   ██║   █████╗
+██║     ██║   ██║██║╚██╗██║██╔══██║    ██║██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗██╔══╝  ██╔══██║██║     ██╔══╝      ╚════██║██║   ██║██║   ██║   ██╔══╝
 ███████╗╚██████╔╝██║ ╚████║██║  ██║    ██║██║ ╚████║   ██║   ███████╗██║  ██║██║     ██║  ██║╚██████╗███████╗    ███████║╚██████╔╝██║   ██║   ███████╗
 ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝╚══════╝    ╚══════╝ ╚═════╝ ╚═╝   ╚═╝   ╚══════╝
-by    d8b   db d88888b d8888b. db    db db       .d8b.       .d8888.  .d88b.  d88888b d888888b db   d8b   db  .d88b.  d8888b. db   dD .d8888. 
-      888o  88 88'     88  `8D 88    88 88      d8' `8b      88'  YP .8P  Y8. 88'     `~~88~~' 88   I8I   88 .8P  Y8. 88  `8D 88 ,8P' 88'  YP 
-      88V8o 88 88ooooo 88oooY' 88    88 88      88ooo88      `8bo.   88    88 88ooo      88    88   I8I   88 88    88 88oobY' 88,8P   `8bo.   
-      88 V8o88 88~~~~~ 88~~~b. 88    88 88      88~~~88        `Y8b. 88    88 88~~~      88    Y8   I8I   88 88    88 88`8b   88`8b     `Y8b. 
-      88  V888 88.     88   8D 88b  d88 88booo. 88   88      db   8D `8b  d8' 88         88    `8b d8'8b d8' `8b  d8' 88 `88. 88 `88. db   8D 
-      VP   V8P Y88888P Y8888P' ~Y8888P' Y88888P YP   YP      `8888Y'  `Y88P'  YP         YP     `8b8' `8d8'   `Y88P'  88   YD YP   YD `8888Y' 
-
+by    d8b   db d88888b d8888b. db    db db       .d8b.       .d8888.  .d88b.  d88888b d888888b db   d8b   db  .d88b.  d8888b. db   dD .d8888.
+      888o  88 88'     88  `8D 88    88 88      d8' `8b      88'  YP .8P  Y8. 88'     `~~88~~' 88   I8I   88 .8P  Y8. 88  `8D 88 ,8P' 88'  YP
+      88V8o 88 88ooooo 88oooY' 88    88 88      88ooo88      `8bo.   88    88 88ooo      88    88   I8I   88 88    88 88oobY' 88,8P   `8bo.
+      88 V8o88 88~~~~~ 88~~~b. 88    88 88      88~~~88        `Y8b. 88    88 88~~~      88    Y8   I8I   88 88    88 88`8b   88`8b     `Y8b.
+      88  V888 88.     88   8D 88b  d88 88booo. 88   88      db   8D `8b  d8' 88         88    `8b d8'8b d8' `8b  d8' 88 `88. 88 `88. db   8D
+      VP   V8P Y88888P Y8888P' ~Y8888P' Y88888P YP   YP      `8888Y'  `Y88P'  YP         YP     `8b8' `8d8'   `Y88P'  88   YD YP   YD `8888Y'
 
 Main Credits
 
@@ -24,7 +21,6 @@ Throit | Color Picker
 Wally | Dragging And Certain Functions
 Sirius | PCall Parsing, Notifications, Slider And Home Tab
 Luna Executor | Original UI
-
 
 Extra Credits / Provided Certain Elements
 
@@ -46,10 +42,10 @@ by Nebula Softworks
 
 local Release = "Prerelease Beta 6.1"
 
-local Luna = { 
-	Folder = "Luna", 
-	Options = {}, 
-	ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} 
+local Luna = {
+	Folder = "Luna",
+	Options = {},
+	ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))}
 }
 
 local UserInputService = game:GetService("UserInputService")
@@ -68,6 +64,10 @@ local website = "github.com/Nebula-Softworks"
 if RunService:IsStudio() then
 	isStudio = true
 end
+
+-- FIX: fallback icon used whenever a lookup would otherwise return nil
+-- (this is what caused "Unable to assign property Image. ContentId expected, got nil")
+local IconFallback = "http://www.roblox.com/asset/?id=6031084749" -- note_add
 
 -- Credits To Latte Softworks And qweery for Lucide And Material Icons Respectively.
 local IconModule = {
@@ -780,6 +780,14 @@ local IconModule = {
 		["add_to_home_screen"] = "http://www.roblox.com/asset/?id=6034983858";
 		["screen_lock_portrait"] = "http://www.roblox.com/asset/?id=6034996706";
 		["data_usage"] = "http://www.roblox.com/asset/?id=6034989568";
+		-- FIX: plain aliases (previously only the underscore versions existed,
+		-- so GetIcon("warning") / GetIcon("error") returned nil)
+		["warning"] = "http://www.roblox.com/asset/?id=6031071053";
+		["error"] = "http://www.roblox.com/asset/?id=6031071057";
+		["notification_important"] = "http://www.roblox.com/asset/?id=6031071056";
+		["add_alert"] = "http://www.roblox.com/asset/?id=6031071067";
+		["auto_delete"] = "http://www.roblox.com/asset/?id=6031071068";
+		["error_outline"] = "http://www.roblox.com/asset/?id=6031071050";
 		["_auto_delete"] = "http://www.roblox.com/asset/?id=6031071068";
 		["_error"] = "http://www.roblox.com/asset/?id=6031071057";
 		["_notification_important"] = "http://www.roblox.com/asset/?id=6031071056";
@@ -1555,7 +1563,7 @@ local IconModule = {
 		["fitness_center"] = "http://www.roblox.com/asset/?id=6035121907";
 		["baby_changing_station"] = "http://www.roblox.com/asset/?id=6035107930";
 		["fire_extinguisher"] = "http://www.roblox.com/asset/?id=6035121913";
-		["sparkle"] = "http://www.roblox.com/asset/?id=4483362748"
+		["sparkle"] = "http://www.roblox.com/asset/?id=4483362748";
 	}
 }
 
@@ -1575,55 +1583,74 @@ local PresetGradients = {
 	Blossom = {Color3.fromRGB(255, 165, 243), Color3.fromRGB(213, 129, 231), Color3.fromRGB(170, 92, 218)},
 }
 
+-- FIX: rewritten so it can NEVER return nil (the previous version returned nil for
+-- any icon that wasn't in the table, which broke ImageLabel.Image assignment).
 local function GetIcon(icon, source)
 	if source == "Custom" then
-		return "rbxassetid://" .. icon
+		return "rbxassetid://" .. tostring(icon)
 	elseif source == "Lucide" then
 		-- full credit to latte softworks :)
-		local iconData = not isStudio and game:HttpGet("https://raw.githubusercontent.com/latte-soft/lucide-roblox/refs/heads/master/lib/Icons.luau")
-		local icons = isStudio and IconModule.Lucide or loadstring(iconData)()
-		if not isStudio then
-			icon = string.match(string.lower(icon), "^%s*(.*)%s*$") :: string
-			local sizedicons = icons['48px']
+		local ok, result = pcall(function()
+			local iconData = not isStudio and game:HttpGet("https://raw.githubusercontent.com/latte-soft/lucide-roblox/refs/heads/master/lib/Icons.luau")
+			local icons = isStudio and IconModule.Lucide or loadstring(iconData)()
 
-			local r = sizedicons[icon]
-			if not r then
-				error("Lucide Icons: Failed to find icon by the name of \"" .. icon .. "\.", 2)
+			if isStudio or not icons then
+				return nil
 			end
+
+			local key = string.match(string.lower(tostring(icon)), "^%s*(.*)%s*$")
+			local sizedicons = icons['48px']
+			if not sizedicons then return nil end
+
+			local r = sizedicons[key]
+			if not r then return nil end
 
 			local rirs = r[2]
 			local riro = r[3]
-
 			if type(r[1]) ~= "number" or type(rirs) ~= "table" or type(riro) ~= "table" then
-				error("Lucide Icons: Internal error: Invalid auto-generated asset entry")
+				return nil
 			end
 
-			local irs = Vector2.new(rirs[1], rirs[2])
-			local iro = Vector2.new(riro[1], riro[2])
-
-			local asset = {
+			return {
 				id = r[1],
-				imageRectSize = irs,
-				imageRectOffset = iro,
+				imageRectSize = Vector2.new(rirs[1], rirs[2]),
+				imageRectOffset = Vector2.new(riro[1], riro[2]),
 			}
+		end)
 
-			return asset
-		else
-			return "rbxassetid://10723434557"
+		if ok and result ~= nil then
+			return result
 		end
-	else	
+
+		-- graceful fallback: try the Material equivalent, otherwise the default icon
+		local lower = string.lower(tostring(icon))
+		return IconModule.Material[icon] or IconModule.Material[lower] or IconFallback
+	else
 		if icon ~= nil and IconModule[source] then
 			local sourceicon = IconModule[source]
-			return sourceicon[icon]
+			local lower = string.lower(tostring(icon))
+			return sourceicon[icon] or sourceicon[lower] or IconFallback
 		else
-			return nil
+			return IconFallback
 		end
 	end
 end
 
+-- FIX: safe identifyexecutor wrapper (some executors don't implement it)
+local function getExecutorName()
+	local ok, name = pcall(function()
+		return identifyexecutor and identifyexecutor() or nil
+	end)
+	if ok and name then
+		return name
+	end
+	return "Unknown Executor"
+end
+
 local function RemoveTable(tablre, value)
-	for i,v in pairs(tablre) do
-		if tostring(v) == tostring(value) then
+	-- FIX: iterate backwards so table.remove doesn't skip entries
+	for i = #tablre, 1, -1 do
+		if tostring(tablre[i]) == tostring(value) then
 			table.remove(tablre, i)
 		end
 	end
@@ -1640,14 +1667,14 @@ end
 
 local function PackColor(Color)
 	return {R = Color.R * 255, G = Color.G * 255, B = Color.B * 255}
-end    
+end
 
 local function UnpackColor(Color)
 	return Color3.fromRGB(Color.R, Color.G, Color.B)
 end
 
 function tween(object, goal, callback, tweenin)
-	local tween = TweenService:Create(object,tweenin or tweeninfo, goal)
+	local tween = TweenService:Create(object, tweenin or tweeninfo, goal)
 	tween.Completed:Connect(callback or function() end)
 	tween:Play()
 end
@@ -1820,10 +1847,10 @@ local function BlurModule(Frame)
 			end
 		end
 		DrawQuad(
-			camera:ScreenPointToRay(tl.x, tl.y, zIndex).Origin, 
-			camera:ScreenPointToRay(tr.x, tr.y, zIndex).Origin, 
-			camera:ScreenPointToRay(bl.x, bl.y, zIndex).Origin, 
-			camera:ScreenPointToRay(br.x, br.y, zIndex).Origin, 
+			camera:ScreenPointToRay(tl.x, tl.y, zIndex).Origin,
+			camera:ScreenPointToRay(tr.x, tr.y, zIndex).Origin,
+			camera:ScreenPointToRay(bl.x, bl.y, zIndex).Origin,
+			camera:ScreenPointToRay(br.x, br.y, zIndex).Origin,
 			parts
 		)
 		if fetchProps then
@@ -1908,7 +1935,7 @@ end
 
 if gethui then
 	LunaUI.Parent = gethui()
-elseif syn and syn.protect_gui then 
+elseif syn and syn.protect_gui then
 	syn.protect_gui(LunaUI)
 	LunaUI.Parent = CoreGui
 elseif not isStudio and CoreGui:FindFirstChild("RobloxGui") then
@@ -2051,90 +2078,6 @@ local function CreateButtonBind(owner, Window, ButtonBindSettings)
 	return ButtonV
 end
 
--- local function LoadConfiguration(Configuration, autoload)
--- 	local Data = HttpService:JSONDecode(Configuration)
--- 	local changed
--- 	local notified = false
-
--- 	-- Iterate through current UI elements' flags
--- 	for FlagName, Flag in pairs(Luna.Flags) do
--- 		local FlagValue = Data[FlagName]
-
--- 		if FlagValue then
--- 			task.spawn(function()
--- 				if Flag.Type == "ColorPicker" then
--- 					changed = true
--- 					Flag:Set(UnpackColor(FlagValue))
--- 				else
--- 					if (Flag.CurrentValue or Flag.CurrentKeybind or Flag.CurrentOption or Flag.Color) ~= FlagValue then 
--- 						changed = true
--- 						Flag:Set(FlagValue) 	
--- 					end
--- 				end
--- 			end)
--- 		else
--- 			notified = true
--- 			Luna:Notification({Title = "Config Error", Content = "Luna was unable to load or find '"..FlagName.. "'' in the current script. Check ".. website .." for help.", Icon = "flag"})
--- 		end
--- 	end
--- 	if autoload and notified == false then
--- 		Luna:Notification({
--- 			Title = "Config Autoloaded",
--- 			Content = "The Configuration Has Been Automatically Loaded. Thank You For Using Luna Library",
--- 			Icon = "file-code-2",
--- 			ImageSource = "Lucide"
--- 		})
--- 	elseif notified == false then
--- 		Luna:Notification({
--- 			Title = "Config Loaded",
--- 			Content = "The Configuration Has Been Loaded. Thank You For Using Luna Library",
--- 			Icon = "file-code-2",
--- 			ImageSource = "Lucide"
--- 		})
--- 	end
-
--- 	return changed
--- end
-
--- local function SaveConfiguration(Configuration, ConfigFolder, hasRoot)
--- 	local Data = {}
--- 	for i,v in pairs(Luna.Flags) do
--- 		if v.Type == "ColorPicker" then
--- 			Data[i] = PackColor(v.Color)
--- 		else
--- 			Data[i] = v.CurrentValue or v.CurrentBind or v.CurrentOption or v.Color
--- 		end
--- 	end	
--- 	if hasRoot then
--- 		writefile(ConfigurationFolder .. "/" .. hasRoot .. "/" .. ConfigFolder .. "/" .. Configuration .. ConfigurationExtension, tostring(HttpService:JSONEncode(Data)))
--- 	else
--- 		writefile(ConfigurationFolder .. "/" .. "/" .. ConfigFolder .. Configuration .. ConfigurationExtension, tostring(HttpService:JSONEncode(Data)))
--- 	end
--- end
-
--- local function SetAutoload(ConfigName, ConfigFolder, hasRoot)
--- 	if hasRoot then
--- 		writefile(ConfigurationFolder .. "/" .. hasRoot .. "/" .. ConfigFolder .. "/" .. "autoload.txt", tostring(ConfigName) .. ConfigurationExtension)
--- 	else
--- 		writefile(ConfigurationFolder .. "/" .. "/" .. ConfigFolder .. "autoload.txt", tostring(ConfigName) .. ConfigurationExtension)
--- 	end
--- end
-
--- local function LoadAutoLoad(ConfigFolder, hasRoot)
--- 	local autoload = isfile(ConfigurationFolder .. "/" .. "/" .. ConfigFolder .. "autoload.txt")
--- 	if hasRoot then
--- 		autoload = isfile(ConfigurationFolder .. "/" .. hasRoot .. "/" .. ConfigFolder .. "/" .. "autoload.txt")
--- 	end
-
--- 	if autoload then
--- 		if hasRoot then
--- 			LoadConfiguration(readfile(ConfigurationFolder .. "/" .. hasRoot .. "/" .. ConfigFolder .. "/" .. readfile(ConfigurationFolder .. "/" .. hasRoot .. "/" .. ConfigFolder .. "/" .. "autoload.txt")), true)
--- 		else
--- 			LoadConfiguration(readfile(ConfigurationFolder .. "/" .. ConfigFolder .. "/" .. readfile(ConfigurationFolder .. "/" .. ConfigFolder .. "/" .. "autoload.txt")), true)
--- 		end
--- 	end
--- end
-
 local function Draggable(Bar, Window, enableTaptic, tapticOffset)
 	pcall(function()
 		local Dragging, DragInput, MousePos, FramePos
@@ -2222,8 +2165,9 @@ function Luna:Notification(data) -- action e.g open messages
 
 		-- Set Data
 		newNotification.Title.Text = data.Title
-		newNotification.Description.Text = data.Content 
-		newNotification.Icon.Image = GetIcon(data.Icon, data.ImageSource)
+		newNotification.Description.Text = data.Content
+		-- FIX: GetIcon can no longer return nil, and we coalesce just in case
+		newNotification.Icon.Image = GetIcon(data.Icon, data.ImageSource) or IconFallback
 
 		-- Set initial transparency values
 		newNotification.BackgroundTransparency = 1
@@ -2319,7 +2263,7 @@ local function Unhide(Window, currentTab)
 end
 
 local MainSize
-local MinSize 
+local MinSize
 if Camera.ViewportSize.X > 774 and Camera.ViewportSize.Y > 503 then
 	MainSize = UDim2.fromOffset(675, 424)
 	MinSize = UDim2.fromOffset(500, 42)
@@ -2371,7 +2315,7 @@ function Luna:CreateWindow(WindowSettings)
 		SaveInRoot = false, -- Enabling will save the key in your RootFolder (YOU MUST HAVE ONE BEFORE ENABLING THIS OPTION)
 		SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
 		Key = {""}, -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
-		SecondAction = {}	
+		SecondAction = {}
 	}, WindowSettings.KeySettings or {})
 
 	WindowSettings.KeySettings.SecondAction = Kwargify({
@@ -2421,33 +2365,13 @@ function Luna:CreateWindow(WindowSettings)
 
 	LoadingFrame.Visible = true
 
-	-- pcall(function()
-	-- 	if not isfolder(ConfigurationFolder) then
-	-- 		makefolder(ConfigurationFolder)
-	-- 	end
-	-- 	if WindowSettings.ConfigSettings.RootFolder then
-	-- 		if not isfolder(ConfigurationFolder .. WindowSettings.ConfigSettings.RootFolder) then
-	-- 			makefolder(ConfigurationFolder .. WindowSettings.ConfigSettings.RootFolder)
-	-- 			if not isfolder(ConfigurationFolder .. WindowSettings.ConfigSettings.RootFolder .. WindowSettings.ConfigSettings.ConfigFolder) then
-	-- 				makefolder(ConfigurationFolder .. WindowSettings.ConfigSettings.RootFolder .. WindowSettings.ConfigSettings.ConfigFolder)
-	-- 			end
-	-- 		end
-	-- 	else
-	-- 		if not isfolder(ConfigurationFolder .. WindowSettings.ConfigSettings.ConfigFolder) then
-	-- 			makefolder(ConfigurationFolder .. WindowSettings.ConfigSettings.ConfigFolder)
-	-- 		end
-	-- 	end
-
-	-- 	LoadAutoLoad(WindowSettings.ConfigSettings.ConfigFolder, WindowSettings.ConfigSettings.RootFolder)
-	-- end)
-
 	LunaUI.Enabled = true
 
 	BlurModule(Main)
 
 	if WindowSettings.KeySystem then
 		local KeySettings = WindowSettings.KeySettings
-		
+
 		Draggable(Dragger, Main)
 		Draggable(LunaUI.MobileSupport, LunaUI.MobileSupport)
 		if dragBar then Draggable(dragInteract, Main, true, 255) end
@@ -2456,8 +2380,11 @@ function Luna:CreateWindow(WindowSettings)
 			Passthrough = true
 			return
 		end
-		
-		WindowSettings.KeySettings.FileName = "key"
+
+		-- FIX: don't stomp a FileName the user already supplied
+		if not WindowSettings.KeySettings.FileName then
+			WindowSettings.KeySettings.FileName = "key"
+		end
 
 		if typeof(WindowSettings.KeySettings.Key) == "string" then WindowSettings.KeySettings.Key = {WindowSettings.KeySettings.Key} end
 
@@ -2476,7 +2403,7 @@ function Luna:CreateWindow(WindowSettings)
 
 			local Btn = KeySystem.Action.Copy
 			local typesys = KeySettings.SecondAction.Type
-			
+
 			if typesys == "Discord" then
 				Btn = KeySystem.Action.Discord
 			end
@@ -2491,7 +2418,7 @@ function Luna:CreateWindow(WindowSettings)
 			if KeySettings.SecondAction.Enabled == true then
 				Btn.Visible = true
 			end
-			
+
 			Btn.Interact.MouseButton1Click:Connect(function()
 				if typesys == "Discord" then
 					setclipboard(tostring("https://discord.gg/"..KeySettings.SecondAction.Parameter)) -- Hunter if you see this I added copy also was too lazy to send u msg
@@ -2526,7 +2453,7 @@ function Luna:CreateWindow(WindowSettings)
 						break
 					end
 				end
-				if KeyFound then 
+				if KeyFound then
 					for _, instance in pairs(KeySystem:GetDescendants()) do
 						if instance.ClassName ~= "UICorner" and instance.ClassName ~= "UIPadding" then
 							if instance.ClassName ~= "UIStroke" and instance.ClassName ~= "UIListLayout" then
@@ -2567,7 +2494,7 @@ function Luna:CreateWindow(WindowSettings)
 			end)
 
 			KeySystem.Close.MouseButton1Click:Connect(function()
-				
+
 				Luna:Destroy()
 			end)
 		end
@@ -2671,10 +2598,10 @@ function Luna:CreateWindow(WindowSettings)
 		HomeTabPage.player.Text.Text = "Hello, " .. Players.LocalPlayer.DisplayName
 		HomeTabPage.player.user.Text = Players.LocalPlayer.Name .. " - ".. WindowSettings.Name
 
-		HomeTabPage.detailsholder.dashboard.Client.Title.Text = (isStudio and "Debugging (Studio)" or identifyexecutor()) or "Your Executor Does Not Support identifyexecutor."
+		HomeTabPage.detailsholder.dashboard.Client.Title.Text = (isStudio and "Debugging (Studio)" or getExecutorName()) or "Your Executor Does Not Support identifyexecutor."
 		for i,v in pairs(HomeTabSettings.SupportedExecutors) do
 			if isStudio then HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Luna Interface Suite - Debugging Mode" break end
-			if v == identifyexecutor() then
+			if v == getExecutorName() then
 				HomeTabPage.detailsholder.dashboard.Client.Subtitle.Text = "Your Executor Supports This Script."
 				break
 			else
@@ -2704,52 +2631,69 @@ function Luna:CreateWindow(WindowSettings)
 			end
 		end)
 
+		-- FIX: time-based cooldown + pcall + correct loop variable.
+		-- Previously this fired GetFriendsAsync every ~25 frames (~0.4s) which
+		-- hammered the friends endpoint and caused HTTP 429.
 		local friendsCooldown = 0
+		local FRIENDS_REFRESH = 30 -- seconds between refreshes
+
 		local function getPing() return math.clamp(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue(), 10, 700) end
 
 		local function checkFriends()
-			if friendsCooldown == 0 then
-
-				friendsCooldown = 25
-
-				local playersFriends = {}
-				local friendsInTotal = 0
-				local onlineFriends = 0 
-				local friendsInGame = 0 
-
-				local list = Players:GetFriendsAsync(Player.UserId)
-				while true do -- loop through all the pages
-					for _, data in list:GetCurrentPage() do
-						friendsInTotal +=1
-						table.insert(playersFriends, Data)
-					end
-
-					if list.IsFinished then
-						-- stop the loop since this is the last page
-						break
-					else 
-						-- go to the next page
-						list:AdvanceToNextPageAsync()
-					end
-				end
-				for i, v in pairs(Player:GetFriendsOnline()) do
-					onlineFriends += 1
-				end
-
-				for i,v in pairs(playersFriends) do
-					if Players:FindFirstChild(v.Username) then
-						friendsInGame = friendsInGame + 1
-					end
-				end
-
-				HomeTabPage.detailsholder.dashboard.Friends.All.Value.Text = tostring(friendsInTotal).." friends"
-				HomeTabPage.detailsholder.dashboard.Friends.Offline.Value.Text = tostring(friendsInTotal - onlineFriends).." friends"
-				HomeTabPage.detailsholder.dashboard.Friends.Online.Value.Text = tostring(onlineFriends).." friends"
-				HomeTabPage.detailsholder.dashboard.Friends.InGame.Value.Text = tostring(friendsInGame).." friends"
-
-			else
-				friendsCooldown -= 1
+			if os.clock() - friendsCooldown < FRIENDS_REFRESH then
+				return
 			end
+			friendsCooldown = os.clock()
+
+			task.spawn(function()
+				local ok, err = pcall(function()
+					local playersFriends = {}
+					local friendsInTotal = 0
+					local onlineFriends = 0
+					local friendsInGame = 0
+
+					local list = Players:GetFriendsAsync(Player.UserId)
+					while true do -- loop through all the pages
+						for _, data in ipairs(list:GetCurrentPage()) do
+							friendsInTotal += 1
+							table.insert(playersFriends, data)
+						end
+
+						if list.IsFinished then
+							-- stop the loop since this is the last page
+							break
+						else
+							-- go to the next page
+							local pageOk = pcall(function()
+								list:AdvanceToNextPageAsync()
+							end)
+							if not pageOk then break end
+						end
+					end
+
+					local onlineOk, online = pcall(function()
+						return Player:GetFriendsOnline()
+					end)
+					if onlineOk and online then
+						onlineFriends = #online
+					end
+
+					for i,v in ipairs(playersFriends) do
+						if v and v.Username and Players:FindFirstChild(v.Username) then
+							friendsInGame = friendsInGame + 1
+						end
+					end
+
+					HomeTabPage.detailsholder.dashboard.Friends.All.Value.Text = tostring(friendsInTotal).." friends"
+					HomeTabPage.detailsholder.dashboard.Friends.Offline.Value.Text = tostring(math.max(friendsInTotal - onlineFriends, 0)).." friends"
+					HomeTabPage.detailsholder.dashboard.Friends.Online.Value.Text = tostring(onlineFriends).." friends"
+					HomeTabPage.detailsholder.dashboard.Friends.InGame.Value.Text = tostring(friendsInGame).." friends"
+				end)
+
+				if not ok then
+					warn("Luna Interface Suite | checkFriends: " .. tostring(err))
+				end
+			end)
 		end
 
 		local function format(Int)
@@ -2764,9 +2708,19 @@ function Luna:CreateWindow(WindowSettings)
 			return format(Hours)..":"..format(Minutes)..":"..format(Seconds)
 		end
 
+		-- FIX: region lookup was a network call running every frame; fetch once
+		local cachedRegion = "Unknown"
+		task.spawn(function()
+			local ok, region = pcall(function()
+				return Localization:GetCountryRegionForPlayerAsync(Players.LocalPlayer)
+			end)
+			if ok and region then
+				cachedRegion = region
+			end
+		end)
+
 		coroutine.wrap(function()
 			while task.wait() do
-
 
 				-- Players
 				HomeTabPage.detailsholder.dashboard.Server.Players.Value.Text = #Players:GetPlayers().." playing"
@@ -2779,7 +2733,7 @@ function Luna:CreateWindow(WindowSettings)
 				HomeTabPage.detailsholder.dashboard.Server.Time.Value.Text = convertToHMS(time())
 
 				-- Region
-				HomeTabPage.detailsholder.dashboard.Server.Region.Value.Text = Localization:GetCountryRegionForPlayerAsync(Players.LocalPlayer)
+				HomeTabPage.detailsholder.dashboard.Server.Region.Value.Text = cachedRegion
 
 				checkFriends()
 			end
@@ -2797,7 +2751,7 @@ function Luna:CreateWindow(WindowSettings)
 			Name = "Tab",
 			ShowTitle = true,
 			Icon = "view_in_ar",
-			ImageSource = "Material" 
+			ImageSource = "Material"
 		}, TabSettings or {})
 
 		local TabButton = Navigation.Tabs["InActive Template"]:Clone()
@@ -2805,7 +2759,7 @@ function Luna:CreateWindow(WindowSettings)
 		TabButton.Name = TabSettings.Name
 		TabButton.TextLabel.Text = TabSettings.Name
 		TabButton.Parent = Navigation.Tabs
-		TabButton.ImageLabel.Image = GetIcon(TabSettings.Icon, TabSettings.ImageSource)
+		TabButton.ImageLabel.Image = GetIcon(TabSettings.Icon, TabSettings.ImageSource) or IconFallback
 
 		TabButton.Visible = true
 
@@ -2939,9 +2893,9 @@ function Luna:CreateWindow(WindowSettings)
 
 				TweenService:Create(Button, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.5}):Play()
 				TweenService:Create(Button.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-				TweenService:Create(Button.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+				TweenService:Create(Button.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 				if ButtonSettings.Description ~= nil and ButtonSettings.Description ~= "" then
-					TweenService:Create(Button.Desc, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+					TweenService:Create(Button.Desc, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 				end
 
 				Button.Interact["MouseButton1Click"]:Connect(function()
@@ -3019,7 +2973,7 @@ function Luna:CreateWindow(WindowSettings)
 				LabelSettings = Kwargify({
 					Text = "Label",
 					Style = 1
-				}, LabelSettings or {}) 
+				}, LabelSettings or {})
 
 				LabelV.Settings = LabelSettings
 
@@ -3046,7 +3000,7 @@ function Luna:CreateWindow(WindowSettings)
 					TweenService:Create(Label, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 1}):Play()
 				end
 				TweenService:Create(Label.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-				TweenService:Create(Label.Text, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+				TweenService:Create(Label.Text, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 
 				function LabelV:Set(NewLabel)
 					LabelSettings.Text = NewLabel
@@ -3088,8 +3042,8 @@ function Luna:CreateWindow(WindowSettings)
 
 				TweenService:Create(Paragraph, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 1}):Play()
 				TweenService:Create(Paragraph.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-				TweenService:Create(Paragraph.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
-				TweenService:Create(Paragraph.Text, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+				TweenService:Create(Paragraph.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
+				TweenService:Create(Paragraph.Text, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 
 				function ParagraphV:Update()
 					Paragraph.Text.Size = UDim2.new(Paragraph.Text.Size.X.Scale, Paragraph.Text.Size.X.Offset, 0, math.huge)
@@ -3151,7 +3105,7 @@ function Luna:CreateWindow(WindowSettings)
 
 				TweenService:Create(Slider, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.5}):Play()
 				TweenService:Create(Slider.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-				TweenService:Create(Slider.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+				TweenService:Create(Slider.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 
 				Slider.Main.Progress.Size =	UDim2.new(0, Slider.Main.AbsoluteSize.X * ((SliderSettings.CurrentValue + SliderSettings.Range[1]) / (SliderSettings.Range[2] - SliderSettings.Range[1])) > 5 and Slider.Main.AbsoluteSize.X * (SliderSettings.CurrentValue / (SliderSettings.Range[2] - SliderSettings.Range[1])) or 5, 1, 0)
 
@@ -3169,15 +3123,15 @@ function Luna:CreateWindow(WindowSettings)
 				end)
 
 				Slider.Interact.InputBegan:Connect(function(Input)
-					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
-						SLDragging = true 
-					end 
+					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+						SLDragging = true
+					end
 				end)
 
-				Slider.Interact.InputEnded:Connect(function(Input) 
-					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
-						SLDragging = false 
-					end 
+				Slider.Interact.InputEnded:Connect(function(Input)
+					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+						SLDragging = false
+					end
 				end)
 
 				Slider.Interact.MouseButton1Down:Connect(function()
@@ -3232,7 +3186,6 @@ function Luna:CreateWindow(WindowSettings)
 
 								SliderSettings.CurrentValue = NewValue
 								SliderV.CurrentValue = SliderSettings.CurrentValue
-								-- Luna.Flags[SliderSettings.Flag] = SliderSettings
 							end
 						else
 							TweenService:Create(Slider.Main.Progress, TweenInfo.new(0.1, Enum.EasingStyle.Back, Enum.EasingDirection.In, 0, false), {Size = UDim2.new(0, Location - Slider.Main.AbsolutePosition.X > 5 and Location - Slider.Main.AbsolutePosition.X or 5, 1, 0)}):Play()
@@ -3265,13 +3218,12 @@ function Luna:CreateWindow(WindowSettings)
 
 					SliderSettings.CurrentValue = NewVal
 					SliderV.CurrentValue = SliderSettings.CurrentValue
-					-- Luna.Flags[SliderSettings.Flag] = SliderSettings
 
 				end
 
 				function SliderV:UpdateValue(Value)
 					Set(tonumber(Value))
-				end 
+				end
 
 				Slider.Value:GetPropertyChangedSignal("Text"):Connect(function()
 					local text = Slider.Value.Text
@@ -3300,7 +3252,6 @@ function Luna:CreateWindow(WindowSettings)
 
 					Set()
 
-					-- Luna.Flags[SliderSettings.Flag] = SliderSettings
 				end
 
 				function SliderV:Destroy()
@@ -3322,7 +3273,7 @@ function Luna:CreateWindow(WindowSettings)
 			end
 
 			-- Toggle
-			function Section:CreateToggle(ToggleSettings, Flag)    
+			function Section:CreateToggle(ToggleSettings, Flag)
 				TabPage.Position = UDim2.new(0,0,0,28)
 				local ToggleV = { IgnoreConfig = false, Class = "Toggle" }
 
@@ -3363,7 +3314,7 @@ function Luna:CreateWindow(WindowSettings)
 					TweenService:Create(Toggle.Desc, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 				end
 				TweenService:Create(Toggle.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-				TweenService:Create(Toggle.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+				TweenService:Create(Toggle.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 
 				local function Set(bool)
 					if bool then
@@ -3648,7 +3599,7 @@ function Luna:CreateWindow(WindowSettings)
 											TweenService:Create(Bind, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.5}):Play()
 											TweenService:Create(Bind, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(32, 30, 38)}):Play()
 											TweenService:Create(Bind.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-										end 
+										end
 										Loop:Disconnect()
 									else
 										local Success, Response = pcall(function()
@@ -3667,7 +3618,7 @@ function Luna:CreateWindow(WindowSettings)
 											TweenService:Create(Bind.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
 										end
 									end
-								end)	
+								end)
 							end
 						end
 					end
@@ -3712,8 +3663,6 @@ function Luna:CreateWindow(WindowSettings)
 					Luna.Options[Flag] = BindV
 				end
 
-				-- Luna.Flags[BindSettings.Flag] = BindSettings
-
 				return BindV
 
 			end
@@ -3744,7 +3693,7 @@ function Luna:CreateWindow(WindowSettings)
 					descriptionbool = true
 				end
 
-				local Input 
+				local Input
 				if descriptionbool then
 					Input = Elements.Template.InputDesc:Clone()
 				else
@@ -3767,7 +3716,7 @@ function Luna:CreateWindow(WindowSettings)
 
 				TweenService:Create(Input, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.5}):Play()
 				TweenService:Create(Input.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-				TweenService:Create(Input.Title, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+				TweenService:Create(Input.Title, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 				if descriptionbool then TweenService:Create(Input.Desc, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play() end
 				TweenService:Create(Input.InputFrame, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.9}):Play()
 				TweenService:Create(Input.InputFrame.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 0.3}):Play()
@@ -3838,7 +3787,7 @@ function Luna:CreateWindow(WindowSettings)
 							TweenService:Create(Input.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
 						end
 					end
-					InputV.CurrentValue = Input.InputFrame.InputBox.Text				
+					InputV.CurrentValue = Input.InputFrame.InputBox.Text
 				end)
 
 				Input["MouseEnter"]:Connect(function()
@@ -4061,7 +4010,7 @@ function Luna:CreateWindow(WindowSettings)
 							else
 								tween(Option, {TextColor3 = Color3.fromRGB(200,200,200)})
 							end
-						end)	
+						end)
 					end
 				end
 
@@ -4119,7 +4068,7 @@ function Luna:CreateWindow(WindowSettings)
 				end
 				if ind == 1 then bleh = DropdownSettings.CurrentOption[1] else bleh = DropdownSettings.CurrentOption end
 				SafeCallback(bleh)
-				if type(bleh) == "string" then 
+				if type(bleh) == "string" then
 					tween(Dropdown.List[bleh], {TextColor3 = Color3.fromRGB(240,240,240), BackgroundTransparency = 0.95})
 				else
 					for i,v in pairs(bleh) do
@@ -4166,7 +4115,7 @@ function Luna:CreateWindow(WindowSettings)
 							table.remove(DropdownSettings.Options, i)
 						end
 						PlayerTableRefresh()
-						DropdownSettings.CurrentOption = DropdownSettings.Options[1]                    
+						DropdownSettings.CurrentOption = DropdownSettings.Options[1]
 						Players.PlayerAdded:Connect(function() PlayerTableRefresh() end)
 						Players.PlayerRemoving:Connect(function() PlayerTableRefresh() end)
 
@@ -4219,8 +4168,6 @@ function Luna:CreateWindow(WindowSettings)
 					end
 					Dropdown.Selected.Text = ""
 
-					-- Luna.Flags[DropdownSettings.Flag] = DropdownSettings
-
 				end
 
 				function DropdownV:Destroy()
@@ -4231,8 +4178,6 @@ function Luna:CreateWindow(WindowSettings)
 				if Flag then
 					Luna.Options[Flag] = DropdownV
 				end
-
-				-- Luna.Flags[DropdownSettings.Flag] = DropdownSettings
 
 				return DropdownV
 
@@ -4307,11 +4252,11 @@ function Luna:CreateWindow(WindowSettings)
 
 				local mouse = game.Players.LocalPlayer:GetMouse()
 				Main.Image = "http://www.roblox.com/asset/?id=11415645739"
-				local mainDragging = false 
-				local sliderDragging = false 
+				local mainDragging = false
+				local sliderDragging = false
 				ColorPicker.Interact.MouseButton1Down:Connect(function()
 					if not opened then
-						opened = true 
+						opened = true
 						tween(ColorPicker, {Size = UDim2.new( 1.042, -25,0, 165)}, nil, TweenInfo.new(0.6, Enum.EasingStyle.Exponential))
 						tween(Background, {Size = openedsize})
 						tween(Display, {BackgroundTransparency = 1})
@@ -4322,28 +4267,28 @@ function Luna:CreateWindow(WindowSettings)
 						tween(Display, {BackgroundTransparency = 0})
 					end
 				end)
-				UserInputService.InputEnded:Connect(function(input, gameProcessed) if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+				UserInputService.InputEnded:Connect(function(input, gameProcessed) if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 						mainDragging = false
 						sliderDragging = false
 					end end)
 				Main.MouseButton1Down:Connect(function()
 					if opened then
-						mainDragging = true 
+						mainDragging = true
 					end
 				end)
 				Main.MainPoint.MouseButton1Down:Connect(function()
 					if opened then
-						mainDragging = true 
+						mainDragging = true
 					end
 				end)
 				Slider.MouseButton1Down:Connect(function()
-					sliderDragging = true 
+					sliderDragging = true
 				end)
 				Slider.SliderPoint.MouseButton1Down:Connect(function()
-					sliderDragging = true 
+					sliderDragging = true
 				end)
 				local h,s,v = ColorPickerSettings.Color:ToHSV()
-				local color = Color3.fromHSV(h,s,v) 
+				local color = Color3.fromHSV(h,s,v)
 				local r,g,b = math.floor((h*255)+0.5),math.floor((s*255)+0.5),math.floor((v*255)+0.5)
 				local hex = string.format("#%02X%02X%02X",color.R*0xFF,color.G*0xFF,color.B*0xFF)
 				ColorPicker.HexInput.InputBox.Text = hex
@@ -4353,11 +4298,11 @@ function Luna:CreateWindow(WindowSettings)
 					Main.MainPoint.ImageColor3 = Color3.fromHSV(hp,sp,vp)
 					Background.BackgroundColor3 = Color3.fromHSV(hp,1,1)
 					Display.BackgroundColor3 = Color3.fromHSV(hp,sp,vp)
-					--Slider 
+					--Slider
 					local x = hp * Slider.AbsoluteSize.X
 					Slider.SliderPoint.Position = UDim2.new(0,x-Slider.SliderPoint.AbsoluteSize.X/2,0.5,0)
 					Slider.SliderPoint.ImageColor3 = Color3.fromHSV(hp,1,1)
-					local color = Color3.fromHSV(hp,sp,vp) 
+					local color = Color3.fromHSV(hp,sp,vp)
 					local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
 					ColorPicker.RInput.InputBox.Text = tostring(r)
 					ColorPicker.GInput.InputBox.Text = tostring(g)
@@ -4374,9 +4319,9 @@ function Luna:CreateWindow(WindowSettings)
 							hex = ColorPicker.HexInput.InputBox.Text
 							setDisplay()
 							ColorPickerSettings.Color = rgbColor
-						end) 
-					then 
-						ColorPicker.HexInput.InputBox.Text = hex 
+						end)
+					then
+						ColorPicker.HexInput.InputBox.Text = hex
 					end
 					local r,g,b = math.floor((h*255)+0.5),math.floor((s*255)+0.5),math.floor((v*255)+0.5)
 					ColorPickerSettings.Color = Color3.fromRGB(r,g,b)
@@ -4384,16 +4329,16 @@ function Luna:CreateWindow(WindowSettings)
 				end)
 				--RGB
 				local function rgbBoxes(box,toChange)
-					local value = tonumber(box.Text) 
-					local color = Color3.fromHSV(h,s,v) 
+					local value = tonumber(box.Text)
+					local color = Color3.fromHSV(h,s,v)
 					local oldR,oldG,oldB = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
-					local save 
+					local save
 					if toChange == "R" then save = oldR;oldR = value elseif toChange == "G" then save = oldG;oldG = value else save = oldB;oldB = value end
-					if value then 
+					if value then
 						value = math.clamp(value,0,255)
 						h,s,v = Color3.fromRGB(oldR,oldG,oldB):ToHSV()
 						setDisplay()
-					else 
+					else
 						box.Text = tostring(save)
 					end
 					local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
@@ -4412,7 +4357,7 @@ function Luna:CreateWindow(WindowSettings)
 					SafeCallback(Color3.fromRGB(r,g,b))
 				end)
 				RunService.RenderStepped:connect(function()
-					if mainDragging then 
+					if mainDragging then
 						local localX = math.clamp(mouse.X-Main.AbsolutePosition.X,0,Main.AbsoluteSize.X)
 						local localY = math.clamp(mouse.Y-Main.AbsolutePosition.Y,0,Main.AbsoluteSize.Y)
 						Main.MainPoint.Position = UDim2.new(0,localX-Main.MainPoint.AbsoluteSize.X/2,0,localY-Main.MainPoint.AbsoluteSize.Y/2)
@@ -4421,7 +4366,7 @@ function Luna:CreateWindow(WindowSettings)
 						Display.BackgroundColor3 = Color3.fromHSV(h,s,v)
 						Main.MainPoint.ImageColor3 = Color3.fromHSV(h,s,v)
 						Background.BackgroundColor3 = Color3.fromHSV(h,1,1)
-						local color = Color3.fromHSV(h,s,v) 
+						local color = Color3.fromHSV(h,s,v)
 						local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
 						ColorPicker.RInput.InputBox.Text = tostring(r)
 						ColorPicker.GInput.InputBox.Text = tostring(g)
@@ -4431,7 +4376,7 @@ function Luna:CreateWindow(WindowSettings)
 						ColorPickerSettings.Color = Color3.fromRGB(r,g,b)
 						ColorPickerV.Color = ColorPickerSettings.Color
 					end
-					if sliderDragging then 
+					if sliderDragging then
 						local localX = math.clamp(mouse.X-Slider.AbsolutePosition.X,0,Slider.AbsoluteSize.X)
 						h = localX / Slider.AbsoluteSize.X
 						Display.BackgroundColor3 = Color3.fromHSV(h,s,v)
@@ -4439,7 +4384,7 @@ function Luna:CreateWindow(WindowSettings)
 						Slider.SliderPoint.ImageColor3 = Color3.fromHSV(h,1,1)
 						Background.BackgroundColor3 = Color3.fromHSV(h,1,1)
 						Main.MainPoint.ImageColor3 = Color3.fromHSV(h,s,v)
-						local color = Color3.fromHSV(h,s,v) 
+						local color = Color3.fromHSV(h,s,v)
 						local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
 						ColorPicker.RInput.InputBox.Text = tostring(r)
 						ColorPicker.GInput.InputBox.Text = tostring(g)
@@ -4463,7 +4408,7 @@ function Luna:CreateWindow(WindowSettings)
 					ColorPicker.Visible = true
 
 					local h,s,v = ColorPickerSettings.Color:ToHSV()
-					local color = Color3.fromHSV(h,s,v) 
+					local color = Color3.fromHSV(h,s,v)
 					local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
 					local hex = string.format("#%02X%02X%02X",color.R*0xFF,color.G*0xFF,color.B*0xFF)
 					ColorPicker.HexInput.InputBox.Text = hex
@@ -4537,9 +4482,9 @@ function Luna:CreateWindow(WindowSettings)
 
 			TweenService:Create(Button, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.5}):Play()
 			TweenService:Create(Button.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-			TweenService:Create(Button.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+			TweenService:Create(Button.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 			if ButtonSettings.Description ~= nil and ButtonSettings.Description ~= "" then
-				TweenService:Create(Button.Desc, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+				TweenService:Create(Button.Desc, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 			end
 
 			Button.Interact["MouseButton1Click"]:Connect(function()
@@ -4615,7 +4560,7 @@ function Luna:CreateWindow(WindowSettings)
 			LabelSettings = Kwargify({
 				Text = "Label",
 				Style = 1
-			}, LabelSettings or {}) 
+			}, LabelSettings or {})
 
 			LabelV.Settings = LabelSettings
 
@@ -4642,7 +4587,7 @@ function Luna:CreateWindow(WindowSettings)
 				TweenService:Create(Label, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 1}):Play()
 			end
 			TweenService:Create(Label.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-			TweenService:Create(Label.Text, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+			TweenService:Create(Label.Text, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 
 			function LabelV:Set(NewLabel)
 				LabelSettings.Text = NewLabel
@@ -4683,8 +4628,8 @@ function Luna:CreateWindow(WindowSettings)
 
 			TweenService:Create(Paragraph, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 1}):Play()
 			TweenService:Create(Paragraph.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-			TweenService:Create(Paragraph.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
-			TweenService:Create(Paragraph.Text, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+			TweenService:Create(Paragraph.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
+			TweenService:Create(Paragraph.Text, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 
 			function ParagraphV:Update()
 				Paragraph.Text.Size = UDim2.new(Paragraph.Text.Size.X.Scale, Paragraph.Text.Size.X.Offset, 0, math.huge)
@@ -4745,7 +4690,7 @@ function Luna:CreateWindow(WindowSettings)
 
 			TweenService:Create(Slider, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.5}):Play()
 			TweenService:Create(Slider.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-			TweenService:Create(Slider.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+			TweenService:Create(Slider.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 
 			Slider.Main.Progress.Size =	UDim2.new(0, Slider.Main.AbsoluteSize.X * ((SliderSettings.CurrentValue + SliderSettings.Range[1]) / (SliderSettings.Range[2] - SliderSettings.Range[1])) > 5 and Slider.Main.AbsoluteSize.X * (SliderSettings.CurrentValue / (SliderSettings.Range[2] - SliderSettings.Range[1])) or 5, 1, 0)
 
@@ -4763,15 +4708,15 @@ function Luna:CreateWindow(WindowSettings)
 			end)
 
 			Slider.Interact.InputBegan:Connect(function(Input)
-				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
-					SLDragging = true 
-				end 
+				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+					SLDragging = true
+				end
 			end)
 
-			Slider.Interact.InputEnded:Connect(function(Input) 
-				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
-					SLDragging = false 
-				end 
+			Slider.Interact.InputEnded:Connect(function(Input)
+				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+					SLDragging = false
+				end
 			end)
 
 			Slider.Interact.MouseButton1Down:Connect(function()
@@ -4826,7 +4771,6 @@ function Luna:CreateWindow(WindowSettings)
 
 							SliderSettings.CurrentValue = NewValue
 							SliderV.CurrentValue = SliderSettings.CurrentValue
-							-- Luna.Flags[SliderSettings.Flag] = SliderSettings
 						end
 					else
 						TweenService:Create(Slider.Main.Progress, TweenInfo.new(0.1, Enum.EasingStyle.Back, Enum.EasingDirection.In, 0, false), {Size = UDim2.new(0, Location - Slider.Main.AbsolutePosition.X > 5 and Location - Slider.Main.AbsolutePosition.X or 5, 1, 0)}):Play()
@@ -4859,13 +4803,12 @@ function Luna:CreateWindow(WindowSettings)
 
 				SliderSettings.CurrentValue = NewVal
 				SliderV.CurrentValue = SliderSettings.CurrentValue
-				-- Luna.Flags[SliderSettings.Flag] = SliderSettings
 
 			end
 
 			function SliderV:UpdateValue(Value)
 				Set(tonumber(Value))
-			end 
+			end
 
 			Slider.Value:GetPropertyChangedSignal("Text"):Connect(function()
 				local text = Slider.Value.Text
@@ -4894,7 +4837,6 @@ function Luna:CreateWindow(WindowSettings)
 
 				Set()
 
-				-- Luna.Flags[SliderSettings.Flag] = SliderSettings
 			end
 
 			function SliderV:Destroy()
@@ -4916,7 +4858,7 @@ function Luna:CreateWindow(WindowSettings)
 		end
 
 		-- Toggle
-		function Tab:CreateToggle(ToggleSettings, Flag)    
+		function Tab:CreateToggle(ToggleSettings, Flag)
 			local ToggleV = { IgnoreConfig = false, Class = "Toggle" }
 
 			ToggleSettings = Kwargify({
@@ -4956,7 +4898,7 @@ function Luna:CreateWindow(WindowSettings)
 				TweenService:Create(Toggle.Desc, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 			end
 			TweenService:Create(Toggle.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-			TweenService:Create(Toggle.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+			TweenService:Create(Toggle.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 
 			local function Set(bool)
 				if bool then
@@ -5240,7 +5182,7 @@ function Luna:CreateWindow(WindowSettings)
 										TweenService:Create(Bind, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.5}):Play()
 										TweenService:Create(Bind, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(32, 30, 38)}):Play()
 										TweenService:Create(Bind.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-									end 
+									end
 									Loop:Disconnect()
 								else
 									local Success, Response = pcall(function()
@@ -5259,7 +5201,7 @@ function Luna:CreateWindow(WindowSettings)
 										TweenService:Create(Bind.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
 									end
 								end
-							end)	
+							end)
 						end
 					end
 				end
@@ -5303,8 +5245,6 @@ function Luna:CreateWindow(WindowSettings)
 			if Flag then
 				Luna.Options[Flag] = BindV
 			end
-
-			-- Luna.Flags[BindSettings.Flag] = BindSettings
 
 			return BindV
 
@@ -5385,7 +5325,8 @@ function Luna:CreateWindow(WindowSettings)
 			UserInputService.InputBegan:Connect(function(input, processed)
 
 				if CheckingForKey then
-					if input.KeyCode ~= Enum.KeyCode.Unknown and input.KeyCode ~= Enum.KeyCode.K then
+					-- FIX: was hardcoded to Enum.KeyCode.K
+					if input.KeyCode ~= Enum.KeyCode.Unknown and input.KeyCode ~= Window.Bind then
 						local SplitMessage = string.split(tostring(input.KeyCode), ".")
 						local NewKeyNoEnum = SplitMessage[3]
 						Bind.BindFrame.BindBox.Text = tostring(NewKeyNoEnum)
@@ -5438,7 +5379,7 @@ function Luna:CreateWindow(WindowSettings)
 										TweenService:Create(Bind, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.5}):Play()
 										TweenService:Create(Bind, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(32, 30, 38)}):Play()
 										TweenService:Create(Bind.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-									end 
+									end
 									Loop:Disconnect()
 								else
 									local Success, Response = pcall(function()
@@ -5457,7 +5398,7 @@ function Luna:CreateWindow(WindowSettings)
 										TweenService:Create(Bind.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
 									end
 								end
-							end)	
+							end)
 						end
 					end
 				end
@@ -5489,16 +5430,12 @@ function Luna:CreateWindow(WindowSettings)
 				Bind.BindFrame.BindBox.Text = BindSettings.CurrentBind
 				Bind.BindFrame.BindBox.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 16, 0, 42)
 
-				-- Luna.Flags[BindSettings.Flag] = BindSettings
-
 			end
 
 			function BindV:Destroy()
 				Bind.Visible = false
 				Bind:Destroy()
 			end
-
-			-- Luna.Flags[BindSettings.Flag] = BindSettings
 
 			return BindV
 
@@ -5529,7 +5466,7 @@ function Luna:CreateWindow(WindowSettings)
 				descriptionbool = true
 			end
 
-			local Input 
+			local Input
 			if descriptionbool then
 				Input = Elements.Template.InputDesc:Clone()
 			else
@@ -5552,7 +5489,7 @@ function Luna:CreateWindow(WindowSettings)
 
 			TweenService:Create(Input, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.5}):Play()
 			TweenService:Create(Input.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
-			TweenService:Create(Input.Title, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()	
+			TweenService:Create(Input.Title, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 			if descriptionbool then TweenService:Create(Input.Desc, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play() end
 			TweenService:Create(Input.InputFrame, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0.9}):Play()
 			TweenService:Create(Input.InputFrame.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 0.3}):Play()
@@ -5623,7 +5560,7 @@ function Luna:CreateWindow(WindowSettings)
 						TweenService:Create(Input.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Transparency = 0.5}):Play()
 					end
 				end
-				InputV.CurrentValue = Input.InputFrame.InputBox.Text				
+				InputV.CurrentValue = Input.InputFrame.InputBox.Text
 			end)
 
 			Input["MouseEnter"]:Connect(function()
@@ -5845,7 +5782,7 @@ function Luna:CreateWindow(WindowSettings)
 						else
 							tween(Option, {TextColor3 = Color3.fromRGB(200,200,200)})
 						end
-					end)	
+					end)
 				end
 			end
 
@@ -5903,7 +5840,7 @@ function Luna:CreateWindow(WindowSettings)
 			end
 			if ind == 1 then bleh = DropdownSettings.CurrentOption[1] else bleh = DropdownSettings.CurrentOption end
 			SafeCallback(bleh)
-			if type(bleh) == "string" then 
+			if type(bleh) == "string" then
 				tween(Dropdown.List[bleh], {TextColor3 = Color3.fromRGB(240,240,240), BackgroundTransparency = 0.95})
 			else
 				for i,v in pairs(bleh) do
@@ -5950,7 +5887,7 @@ function Luna:CreateWindow(WindowSettings)
 						table.remove(DropdownSettings.Options, i)
 					end
 					PlayerTableRefresh()
-					DropdownSettings.CurrentOption = DropdownSettings.Options[1]                    
+					DropdownSettings.CurrentOption = DropdownSettings.Options[1]
 					Players.PlayerAdded:Connect(function() PlayerTableRefresh() end)
 					Players.PlayerRemoving:Connect(function() PlayerTableRefresh() end)
 
@@ -6003,8 +5940,6 @@ function Luna:CreateWindow(WindowSettings)
 				end
 				Dropdown.Selected.Text = ""
 
-				-- Luna.Flags[DropdownSettings.Flag] = DropdownSettings
-
 			end
 
 			function DropdownV:Destroy()
@@ -6015,8 +5950,6 @@ function Luna:CreateWindow(WindowSettings)
 			if Flag then
 				Luna.Options[Flag] = DropdownV
 			end
-
-			-- Luna.Flags[DropdownSettings.Flag] = DropdownSettings
 
 			return DropdownV
 
@@ -6090,11 +6023,11 @@ function Luna:CreateWindow(WindowSettings)
 
 			local mouse = game.Players.LocalPlayer:GetMouse()
 			Main.Image = "http://www.roblox.com/asset/?id=11415645739"
-			local mainDragging = false 
-			local sliderDragging = false 
+			local mainDragging = false
+			local sliderDragging = false
 			ColorPicker.Interact.MouseButton1Down:Connect(function()
 				if not opened then
-					opened = true 
+					opened = true
 					tween(ColorPicker, {Size = UDim2.new( 1.042, -25,0, 165)}, nil, TweenInfo.new(0.6, Enum.EasingStyle.Exponential))
 					tween(Background, {Size = openedsize})
 					tween(Display, {BackgroundTransparency = 1})
@@ -6105,28 +6038,28 @@ function Luna:CreateWindow(WindowSettings)
 					tween(Display, {BackgroundTransparency = 0})
 				end
 			end)
-			UserInputService.InputEnded:Connect(function(input, gameProcessed) if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+			UserInputService.InputEnded:Connect(function(input, gameProcessed) if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 					mainDragging = false
 					sliderDragging = false
 				end end)
 			Main.MouseButton1Down:Connect(function()
 				if opened then
-					mainDragging = true 
+					mainDragging = true
 				end
 			end)
 			Main.MainPoint.MouseButton1Down:Connect(function()
 				if opened then
-					mainDragging = true 
+					mainDragging = true
 				end
 			end)
 			Slider.MouseButton1Down:Connect(function()
-				sliderDragging = true 
+				sliderDragging = true
 			end)
 			Slider.SliderPoint.MouseButton1Down:Connect(function()
-				sliderDragging = true 
+				sliderDragging = true
 			end)
 			local h,s,v = ColorPickerSettings.Color:ToHSV()
-			local color = Color3.fromHSV(h,s,v) 
+			local color = Color3.fromHSV(h,s,v)
 			local r,g,b = math.floor((h*255)+0.5),math.floor((s*255)+0.5),math.floor((v*255)+0.5)
 			local hex = string.format("#%02X%02X%02X",color.R*0xFF,color.G*0xFF,color.B*0xFF)
 			ColorPicker.HexInput.InputBox.Text = hex
@@ -6136,11 +6069,11 @@ function Luna:CreateWindow(WindowSettings)
 				Main.MainPoint.ImageColor3 = Color3.fromHSV(hp,sp,vp)
 				Background.BackgroundColor3 = Color3.fromHSV(hp,1,1)
 				Display.BackgroundColor3 = Color3.fromHSV(hp,sp,vp)
-				--Slider 
+				--Slider
 				local x = hp * Slider.AbsoluteSize.X
 				Slider.SliderPoint.Position = UDim2.new(0,x-Slider.SliderPoint.AbsoluteSize.X/2,0.5,0)
 				Slider.SliderPoint.ImageColor3 = Color3.fromHSV(hp,1,1)
-				local color = Color3.fromHSV(hp,sp,vp) 
+				local color = Color3.fromHSV(hp,sp,vp)
 				local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
 				ColorPicker.RInput.InputBox.Text = tostring(r)
 				ColorPicker.GInput.InputBox.Text = tostring(g)
@@ -6157,9 +6090,9 @@ function Luna:CreateWindow(WindowSettings)
 						hex = ColorPicker.HexInput.InputBox.Text
 						setDisplay()
 						ColorPickerSettings.Color = rgbColor
-					end) 
-				then 
-					ColorPicker.HexInput.InputBox.Text = hex 
+					end)
+				then
+					ColorPicker.HexInput.InputBox.Text = hex
 				end
 				local r,g,b = math.floor((h*255)+0.5),math.floor((s*255)+0.5),math.floor((v*255)+0.5)
 				ColorPickerSettings.Color = Color3.fromRGB(r,g,b)
@@ -6167,16 +6100,16 @@ function Luna:CreateWindow(WindowSettings)
 			end)
 			--RGB
 			local function rgbBoxes(box,toChange)
-				local value = tonumber(box.Text) 
-				local color = Color3.fromHSV(h,s,v) 
+				local value = tonumber(box.Text)
+				local color = Color3.fromHSV(h,s,v)
 				local oldR,oldG,oldB = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
-				local save 
+				local save
 				if toChange == "R" then save = oldR;oldR = value elseif toChange == "G" then save = oldG;oldG = value else save = oldB;oldB = value end
-				if value then 
+				if value then
 					value = math.clamp(value,0,255)
 					h,s,v = Color3.fromRGB(oldR,oldG,oldB):ToHSV()
 					setDisplay()
-				else 
+				else
 					box.Text = tostring(save)
 				end
 				local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
@@ -6195,7 +6128,7 @@ function Luna:CreateWindow(WindowSettings)
 				SafeCallback(Color3.fromRGB(r,g,b))
 			end)
 			RunService.RenderStepped:connect(function()
-				if mainDragging then 
+				if mainDragging then
 					local localX = math.clamp(mouse.X-Main.AbsolutePosition.X,0,Main.AbsoluteSize.X)
 					local localY = math.clamp(mouse.Y-Main.AbsolutePosition.Y,0,Main.AbsoluteSize.Y)
 					Main.MainPoint.Position = UDim2.new(0,localX-Main.MainPoint.AbsoluteSize.X/2,0,localY-Main.MainPoint.AbsoluteSize.Y/2)
@@ -6204,7 +6137,7 @@ function Luna:CreateWindow(WindowSettings)
 					Display.BackgroundColor3 = Color3.fromHSV(h,s,v)
 					Main.MainPoint.ImageColor3 = Color3.fromHSV(h,s,v)
 					Background.BackgroundColor3 = Color3.fromHSV(h,1,1)
-					local color = Color3.fromHSV(h,s,v) 
+					local color = Color3.fromHSV(h,s,v)
 					local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
 					ColorPicker.RInput.InputBox.Text = tostring(r)
 					ColorPicker.GInput.InputBox.Text = tostring(g)
@@ -6214,7 +6147,7 @@ function Luna:CreateWindow(WindowSettings)
 					ColorPickerSettings.Color = Color3.fromRGB(r,g,b)
 					ColorPickerV.Color = ColorPickerSettings.Color
 				end
-				if sliderDragging then 
+				if sliderDragging then
 					local localX = math.clamp(mouse.X-Slider.AbsolutePosition.X,0,Slider.AbsoluteSize.X)
 					h = localX / Slider.AbsoluteSize.X
 					Display.BackgroundColor3 = Color3.fromHSV(h,s,v)
@@ -6222,7 +6155,7 @@ function Luna:CreateWindow(WindowSettings)
 					Slider.SliderPoint.ImageColor3 = Color3.fromHSV(h,1,1)
 					Background.BackgroundColor3 = Color3.fromHSV(h,1,1)
 					Main.MainPoint.ImageColor3 = Color3.fromHSV(h,s,v)
-					local color = Color3.fromHSV(h,s,v) 
+					local color = Color3.fromHSV(h,s,v)
 					local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
 					ColorPicker.RInput.InputBox.Text = tostring(r)
 					ColorPicker.GInput.InputBox.Text = tostring(g)
@@ -6246,7 +6179,7 @@ function Luna:CreateWindow(WindowSettings)
 				ColorPicker.Visible = true
 
 				local h,s,v = ColorPickerSettings.Color:ToHSV()
-				local color = Color3.fromHSV(h,s,v) 
+				local color = Color3.fromHSV(h,s,v)
 				local r,g,b = math.floor((color.R*255)+0.5),math.floor((color.G*255)+0.5),math.floor((color.B*255)+0.5)
 				local hex = string.format("#%02X%02X%02X",color.R*0xFF,color.G*0xFF,color.B*0xFF)
 				ColorPicker.HexInput.InputBox.Text = hex
@@ -6273,7 +6206,7 @@ function Luna:CreateWindow(WindowSettings)
 		function Tab:BuildConfigSection()
 			if isStudio then
 				Tab:CreateLabel({Text = "Config system unavailable. (Environment isStudio)", Style = 3})
-				return "Config system unavailable." 
+				return "Config system unavailable."
 			end
 
 			local inputPath = nil
@@ -6452,15 +6385,15 @@ function Luna:CreateWindow(WindowSettings)
 			if isfile(Luna.Folder .. "/settings/autoload.txt") then
 				local name = readfile(Luna.Folder .. "/settings/autoload.txt")
 				loadlabel:Set( { Text = "Current autoload config: " .. name })
-			end     
+			end
 		end
 
 		local ClassParser = {
 			["Toggle"] = {
 				Save = function(Flag, data)
 					return {
-						type = "Toggle", 
-						flag = Flag, 
+						type = "Toggle",
+						flag = Flag,
 						state = data.CurrentValue or false
 					}
 				end,
@@ -6473,8 +6406,8 @@ function Luna:CreateWindow(WindowSettings)
 			["Slider"] = {
 				Save = function(Flag, data)
 					return {
-						type = "Slider", 
-						flag = Flag, 
+						type = "Slider",
+						flag = Flag,
 						value = (data.CurrentValue and tostring(data.CurrentValue)),
 					}
 				end,
@@ -6487,8 +6420,8 @@ function Luna:CreateWindow(WindowSettings)
 			["Input"] = {
 				Save = function(Flag, data)
 					return {
-						type = "Input", 
-						flag = Flag, 
+						type = "Input",
+						flag = Flag,
 						text = data.CurrentValue
 					}
 				end,
@@ -6501,8 +6434,8 @@ function Luna:CreateWindow(WindowSettings)
 			["Dropdown"] = {
 				Save = function(Flag, data)
 					return {
-						type = "Dropdown", 
-						flag = Flag, 
+						type = "Dropdown",
+						flag = Flag,
 						value = data.CurrentOption
 					}
 				end,
@@ -6520,8 +6453,8 @@ function Luna:CreateWindow(WindowSettings)
 					end
 
 					return {
-						type = "Colorpicker", 
-						flag = Flag, 
+						type = "Colorpicker",
+						flag = Flag,
 						color = Color3ToHex(data.Color) or nil,
 						alpha = data.Alpha
 					}
@@ -6566,7 +6499,7 @@ function Luna:CreateWindow(WindowSettings)
 			local c3cp = Tab:CreateColorPicker({
 				Name = "Color 3",
 				Color = Color3.fromRGB(224, 138, 184),
-			}, "LunaInterfaceSuitePrebuiltCPC3") 
+			}, "LunaInterfaceSuitePrebuiltCPC3")
 
 			task.wait(1)
 
@@ -6661,7 +6594,7 @@ function Luna:CreateWindow(WindowSettings)
 				if option.IgnoreConfig then continue end
 
 				table.insert(data.objects, ClassParser[option.Class].Save(flag, option))
-			end	
+			end
 
 			local success, encoded = pcall(HttpService.JSONEncode, HttpService, data)
 			if not success then
@@ -6687,8 +6620,8 @@ function Luna:CreateWindow(WindowSettings)
 
 			for _, option in next, decoded.objects do
 				if ClassParser[option.type] then
-					task.spawn(function() 
-						ClassParser[option.type].Load(option.flag, option) 
+					task.spawn(function()
+						ClassParser[option.type].Load(option.flag, option)
 					end)
 				end
 			end
@@ -6720,7 +6653,7 @@ function Luna:CreateWindow(WindowSettings)
 					Content = string.format("Auto loaded config %q", name),
 				})
 
-			end 
+			end
 		end
 
 		function Luna:RefreshConfigList()
@@ -6834,7 +6767,7 @@ function Luna:CreateWindow(WindowSettings)
 	end)
 	Main.Controls.Theme["MouseLeave"]:Connect(function()
 		tween(Main.Controls.Theme.ImageLabel, {ImageColor3 = Color3.fromRGB(195,195,195)})
-	end)	
+	end)
 
 
 	LunaUI.MobileSupport.Interact.MouseButton1Click:Connect(function()
@@ -6859,11 +6792,11 @@ function Luna:Destroy()
 end
 
 if (getgenv and not getgenv().ConfirmLuna) or (not getgenv) then
-	Luna:Notification({ 
-    	Title = "Luna Is Deprecated",
-    	Icon = "warning",
-    	ImageSource = "Material",
-    	Content = "If you are not the script developer, ignore this message. \n\n The Luna Interface Library Is Deprecated And Not Recommended to Use. A New Library Is Available at nebulasoftworks.xyz/starlight. If you insist on using Luna, set the getgenv().ConfirmLuna variable to true. "
+	Luna:Notification({
+		Title = "Luna Is Deprecated",
+		Icon = "warning",
+		ImageSource = "Material",
+		Content = "If you are not the script developer, ignore this message. \n\n The Luna Interface Library Is Deprecated And Not Recommended to Use. A New Library Is Available at nebulasoftworks.xyz/starlight. If you insist on using Luna, set the getgenv().ConfirmLuna variable to true. "
 	})
 end
 
@@ -6890,7 +6823,7 @@ if isStudio then
 			}
 		}
 	})
-	
+
 	--[[local Window = Luna:CreateWindow({
 		Name = "Luna Example Window",
 		Subtitle = "Test",
@@ -6909,7 +6842,7 @@ if isStudio then
 		}
 	})
 
-	Luna:Notification({ 
+	Luna:Notification({
 		Title = "Welcome to Luna",
 		Icon = "sparkle",
 		ImageSource = "Material",
@@ -7032,7 +6965,7 @@ if isStudio then
 		HoldToInteract = true,
 		CurrentBind = "E",
 		Callback = function(v)
-			if v then 
+			if v then
 				Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100
 			else
 				Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
@@ -7084,7 +7017,7 @@ end
     window = Luna:CreateWindow({LoadingEnabled = false})
     t1 = window:CreateTab()
     t2 = window:CreateTab({ Name = "Tab 2", Icon = "location_searching"})
-    Luna:Notification({ 
+    Luna:Notification({
         Title = "Welcome to Luna",
         Icon = "sparkle",
         ImageSource = "Material",
@@ -7094,14 +7027,14 @@ end
     local btn = t1:CreateButton({Callback = "", Description = "This Is A Description"})
     local l = t1:CreateLabel({ Style = 2})
     local l2 = t1:CreateLabel({ Text = "Another Label" })
-    t2:CreateButton({ Callback = function() 
+    t2:CreateButton({ Callback = function()
         l:Destroy()
         l2:Set("New Text")
     end})
     t2:CreateLabel({Style = 3})
     t1:CreateParagraph({Text = "Single String"})
     t1:CreateParagraph({Text = "Welcome to the Luna Interface Suite. This Is an Amazing Quality Freemium UI Library For Roblox Exploiting Made By Nebula Softworks. Luna was Created in hopes of improving the standard of UI Library designs by being the golden standard for it. Luna Has Amazing Features like a key system, notification and perfection in aesthetics and design. So, What Are You Waiting For? Start Using Luna Today at " .. website})
-    s = t2:CreateSlider({ Callback = function(v) print(v) end })	
+    s = t2:CreateSlider({ Callback = function(v) print(v) end })
     t1:CreateButton({ Callback = function()
         s:Set({Name = "new name", Callback = ""})
         wait(5)
