@@ -1351,7 +1351,7 @@ local function CreateToggleBind(owner, Window, ToggleBindSettings, Flag)
 		BindFrame.Name = "BindFrame"
 		BindFrame.AnchorPoint = Vector2.new(1, 0.5)
 		BindFrame.Position = UDim2.new(1, -12, 0.5, 0)
-		BindFrame.Size = UDim2.new(0, 72, 0, 30)
+		BindFrame.Size = UDim2.new(0, 68, 0, 28)
 		BindFrame.BackgroundTransparency = 0.9
 		BindFrame.Visible = true
 		BindFrame.ZIndex = 20
