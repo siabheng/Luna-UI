@@ -1979,28 +1979,71 @@ local Tabs = Navigation.Tabs
 local Notifications = LunaUI.Notifications
 local KeySystem : Frame = Main.KeySystem
 
-local function CreateButtonBind(owner, Window, ButtonBindSettings)
-	ButtonBindSettings = Kwargify({
-		Name = "Button",
+-- ============================================================================
+-- ToggleBind : a real toggle switch with a keybind box sitting right next to it.
+-- Pressing the bound key flips the toggle. The bind box can be clicked to
+-- rebind. HoldToInteract = true makes the key behave like a hold instead.
+-- ============================================================================
+local function CreateToggleBind(owner, Window, ToggleBindSettings, Flag)
+
+	ToggleBindSettings = Kwargify({
+		Name = "Toggle Bind",
 		Description = nil,
+		CurrentValue = false,
 		CurrentBind = "Q",
-		Callback = function()
+		HoldToInteract = false,
+		Callback = function(Value, Bind)
+			-- Value : boolean (new state of the toggle)
+			-- Bind  : string (the key that triggered it, nil if clicked)
 		end,
-		OnChangedCallback = function()
+		OnChangedCallback = function(Bind)
+			-- Fired when the user rebinds the key
 		end,
-	}, ButtonBindSettings or {})
+	}, ToggleBindSettings or {})
 
-	local ButtonV = owner:CreateButton({
-		Name = ButtonBindSettings.Name,
-		Description = ButtonBindSettings.Description,
-		Callback = ButtonBindSettings.Callback,
+	local ToggleBindV = {
+		Class = "ToggleBind",
+		IgnoreConfig = false,
+		Settings = ToggleBindSettings,
+		CurrentValue = ToggleBindSettings.CurrentValue,
+		CurrentBind = ToggleBindSettings.CurrentBind,
+		Active = false,
+	}
+
+	-- Build a normal toggle so we inherit all the styling / hover / error handling
+	local ToggleV = owner:CreateToggle({
+		Name = ToggleBindSettings.Name,
+		Description = ToggleBindSettings.Description,
+		CurrentValue = ToggleBindSettings.CurrentValue,
+		Callback = function(Value)
+			ToggleBindSettings.Callback(Value, ToggleBindSettings.CurrentBind)
+		end,
 	})
-	local Button = ButtonV.Instance
 
+	local Toggle = ToggleV.Instance
+	Toggle.Name = ToggleBindSettings.Name .. " - ToggleBind"
+
+	-- ---- Layout : label | switch | keybind ----
+	-- Pull the switch in so it sits just left of the bind box
+	Toggle.toggle.AnchorPoint = Vector2.new(1, 0.5)
+	Toggle.toggle.Position = UDim2.new(1, -94, 0.5, 0)
+
+	-- Trim the clickable area so it doesn't sit under the bind box
+	if Toggle.Interact then
+		Toggle.Interact.Size = UDim2.new(1, -88, 1, 0)
+	end
+
+	-- Keep the label clear of the switch + bind box
+	if Toggle:FindFirstChild("Title") then
+		Toggle.Title.Size = UDim2.new(1, -160, Toggle.Title.Size.Y.Scale, Toggle.Title.Size.Y.Offset)
+	end
+	if Toggle:FindFirstChild("Desc") then
+		Toggle.Desc.Size = UDim2.new(1, -160, Toggle.Desc.Size.Y.Scale, Toggle.Desc.Size.Y.Offset)
+	end
+
+	-- ---- Keybind box ----
 	local BindFrame = Elements.Template.Bind.BindFrame:Clone()
 	local BindBox = BindFrame.BindBox
-	local CheckingForKey = false
-	local CurrentBind = ButtonBindSettings.CurrentBind
 
 	BindFrame.Name = "BindFrame"
 	BindFrame.AnchorPoint = Vector2.new(1, 0.5)
@@ -2008,15 +2051,20 @@ local function CreateButtonBind(owner, Window, ButtonBindSettings)
 	BindFrame.Size = UDim2.new(0, 72, 0, 30)
 	BindFrame.BackgroundTransparency = 0.9
 	BindFrame.Visible = true
-	BindFrame.ZIndex = Button.Interact.ZIndex + 1
+	BindFrame.ZIndex = 20
+	if BindFrame:FindFirstChild("UIStroke") then
+		BindFrame.UIStroke.Transparency = 0.3
+	end
+
 	BindBox.AnchorPoint = Vector2.new(0, 0)
 	BindBox.Position = UDim2.new(0, 0, 0, 0)
 	BindBox.Size = UDim2.new(1, 0, 1, 0)
 	BindBox.TextTransparency = 0
-	BindBox.ZIndex = BindFrame.ZIndex + 1
-	BindBox.Text = CurrentBind
-	BindFrame.Parent = Button
-	Button.Interact.Size = UDim2.new(1, -92, 1, 0)
+	BindBox.ZIndex = 21
+	BindBox.Text = ToggleBindSettings.CurrentBind
+	BindFrame.Parent = Toggle
+
+	local CheckingForKey = false
 
 	BindBox.Focused:Connect(function()
 		CheckingForKey = true
@@ -2026,56 +2074,110 @@ local function CreateButtonBind(owner, Window, ButtonBindSettings)
 	BindBox.FocusLost:Connect(function()
 		CheckingForKey = false
 		if BindBox.Text == "" then
-			BindBox.Text = CurrentBind
+			BindBox.Text = ToggleBindSettings.CurrentBind
 		end
 	end)
 
-	local InputConnection = UserInputService.InputBegan:Connect(function(input, processed)
+	BindFrame.MouseEnter:Connect(function()
+		if BindFrame:FindFirstChild("UIStroke") then
+			tween(BindFrame.UIStroke, {Color = Color3.fromRGB(87, 84, 104)})
+		end
+	end)
+
+	BindFrame.MouseLeave:Connect(function()
+		if BindFrame:FindFirstChild("UIStroke") then
+			tween(BindFrame.UIStroke, {Color = Color3.fromRGB(64, 61, 76)})
+		end
+	end)
+
+	-- ---- Input ----
+	local InputBeganConnection = UserInputService.InputBegan:Connect(function(input, processed)
 		if CheckingForKey then
 			if input.KeyCode ~= Enum.KeyCode.Unknown and input.KeyCode ~= Window.Bind then
 				local NewBind = input.KeyCode.Name
-				CurrentBind = NewBind
-				ButtonBindSettings.CurrentBind = NewBind
+				ToggleBindSettings.CurrentBind = NewBind
+				ToggleBindV.CurrentBind = NewBind
 				BindBox.Text = NewBind
 				BindBox:ReleaseFocus()
 
-				local Success, Response = pcall(ButtonBindSettings.OnChangedCallback, NewBind)
+				local Success, Response = pcall(ToggleBindSettings.OnChangedCallback, NewBind)
 				if not Success then
-					warn("Luna Interface Suite | " .. ButtonBindSettings.Name .. " OnChangedCallback Error " .. tostring(Response))
+					warn("Luna Interface Suite | " .. ToggleBindSettings.Name .. " OnChangedCallback Error " .. tostring(Response))
 				end
 			end
-		elseif not processed and CurrentBind and input.KeyCode == Enum.KeyCode[CurrentBind] then
-			local Success, Response = pcall(ButtonBindSettings.Callback)
-			if not Success then
-				warn("Luna Interface Suite | " .. ButtonBindSettings.Name .. " Callback Error " .. tostring(Response))
+			return
+		end
+
+		if processed then return end
+		if not ToggleBindSettings.CurrentBind then return end
+		if input.KeyCode ~= Enum.KeyCode[ToggleBindSettings.CurrentBind] then return end
+
+		if ToggleBindSettings.HoldToInteract then
+			ToggleBindV.Active = true
+			if ToggleV.CurrentValue ~= true then
+				ToggleV:Set({ CurrentValue = true })
+			end
+		else
+			local NewState = not ToggleV.CurrentValue
+			ToggleBindV.Active = NewState
+			ToggleV:Set({ CurrentValue = NewState })
+		end
+	end)
+
+	local InputEndedConnection = UserInputService.InputEnded:Connect(function(input)
+		if CheckingForKey then return end
+		if not ToggleBindSettings.HoldToInteract then return end
+		if not ToggleBindSettings.CurrentBind then return end
+		if input.KeyCode == Enum.KeyCode[ToggleBindSettings.CurrentBind] then
+			ToggleBindV.Active = false
+			if ToggleV.CurrentValue ~= false then
+				ToggleV:Set({ CurrentValue = false })
 			end
 		end
 	end)
 
-	local OriginalSet = ButtonV.Set
-	function ButtonV:Set(NewSettings)
-		NewSettings = Kwargify(ButtonBindSettings, NewSettings or {})
-		ButtonBindSettings = NewSettings
-		CurrentBind = NewSettings.CurrentBind
-		OriginalSet(self, {
+	-- ---- Public API ----
+	function ToggleBindV:Set(NewSettings)
+		NewSettings = Kwargify(ToggleBindSettings, NewSettings or {})
+		ToggleBindSettings = NewSettings
+		ToggleBindV.Settings = NewSettings
+		ToggleBindV.CurrentBind = NewSettings.CurrentBind
+		ToggleBindV.CurrentValue = NewSettings.CurrentValue
+
+		ToggleV:Set({
 			Name = NewSettings.Name,
 			Description = NewSettings.Description,
-			Callback = NewSettings.Callback,
+			CurrentValue = NewSettings.CurrentValue,
 		})
-		self.Settings = NewSettings
-		self.CurrentBind = CurrentBind
-		BindBox.Text = CurrentBind
+
+		BindBox.Text = NewSettings.CurrentBind
 	end
 
-	local OriginalDestroy = ButtonV.Destroy
-	function ButtonV:Destroy()
-		InputConnection:Disconnect()
-		OriginalDestroy(self)
+	function ToggleBindV:UpdateState(State)
+		ToggleBindV.CurrentValue = State
+		ToggleBindSettings.CurrentValue = State
+		ToggleV:Set({ CurrentValue = State })
 	end
 
-	ButtonV.Settings = ButtonBindSettings
-	ButtonV.CurrentBind = CurrentBind
-	return ButtonV
+	function ToggleBindV:Destroy()
+		InputBeganConnection:Disconnect()
+		InputEndedConnection:Disconnect()
+		ToggleV:Destroy()
+	end
+
+	ToggleBindV.Instance = Toggle
+
+	if Flag then
+		Luna.Options[Flag] = ToggleBindV
+	end
+
+	return ToggleBindV
+end
+
+-- CreateButtonBind now produces the nicer toggle + keybind combo.
+-- Kept under the old name so existing calls keep working.
+local function CreateButtonBind(owner, Window, ButtonBindSettings)
+	return CreateToggleBind(owner, Window, ButtonBindSettings)
 end
 
 local function Draggable(Bar, Window, enableTaptic, tapticOffset)
@@ -2962,6 +3064,12 @@ function Luna:CreateWindow(WindowSettings)
 			function Section:CreateButtonBind(ButtonBindSettings)
 				TabPage.Position = UDim2.new(0,0,0,28)
 				return CreateButtonBind(self, Window, ButtonBindSettings)
+			end
+
+			-- ToggleBind (toggle + keybind side by side)
+			function Section:CreateToggleBind(ToggleBindSettings, Flag)
+				TabPage.Position = UDim2.new(0,0,0,28)
+				return CreateToggleBind(self, Window, ToggleBindSettings, Flag)
 			end
 
 			-- Label
@@ -4550,6 +4658,11 @@ function Luna:CreateWindow(WindowSettings)
 
 		function Tab:CreateButtonBind(ButtonBindSettings)
 			return CreateButtonBind(self, Window, ButtonBindSettings)
+		end
+
+		-- ToggleBind (toggle + keybind side by side)
+		function Tab:CreateToggleBind(ToggleBindSettings, Flag)
+			return CreateToggleBind(self, Window, ToggleBindSettings, Flag)
 		end
 
 		-- Label
