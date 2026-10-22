@@ -79,7 +79,7 @@ local Tab = Window:CreateTab({
 })
 ```
 
-`ImageSource` may be `"Material"`, `"Lucide"`, or `"Custom"`. With `"Custom"`, set `Icon` to the numeric asset ID without the `rbxassetid://` prefix. The tab settings default to a `"Tab"` name, the Material `view_in_ar` icon, the Material icon source, and a visible title.
+`ImageSource` may be `"Material"`, `"Lucide"`, or `"Custom"`. With `"Custom"`, set `Icon` to the numeric asset ID without the `rbxassetid://` prefix. Named icons must exist in the selected built-in icon catalog; for example, `"dark_mode"` is available in the Material catalog. The tab settings default to a `"Tab"` name, the Material `view_in_ar` icon, the Material icon source, and a visible title. Unsupported icon names produce a descriptive error rather than assigning a missing image.
 
 ### Home tab
 
@@ -155,9 +155,9 @@ local ToggleBind = Section:CreateToggleBind({
 }, "AutoActionFlag")
 ```
 
-`CurrentValue` defaults to `false` and sets the initial state; if it starts as `true`, the callback is called with `true` when the control is created. `CurrentBind` is a Roblox `Enum.KeyCode` name such as `"Q"` or `"F"`. Clicking the toggle or pressing the bound key switches the active state and calls `Callback` with the new boolean value. `OnChangedCallback` receives the new key name as a string when the key is rebound. `HoldToInteract = true` changes the key behavior to held-state callbacks rather than toggling on each press.
+`CurrentValue` defaults to `false` and sets the initial state; if it starts as `true`, the callback is called with `true` when the control is created. The toggle switch appears before the key selector. `CurrentBind` is a Roblox `Enum.KeyCode` name such as `"Q"` or `"F"`. Clicking the toggle or pressing the bound key switches the active state and calls `Callback` with the new boolean value. `OnChangedCallback` receives the new key name as a string when the key is rebound. `HoldToInteract = true` changes the key behavior to held-state callbacks rather than toggling on each press.
 
-`:Set({CurrentValue = true})` updates the active state and `:Set({CurrentBind = "F"})` updates the displayed bind; setting `Active` is also supported for compatibility with button-bind configs. `:Destroy()` disconnects the key listener. `CreateButtonBind` remains available as a backwards-compatible alias with the same behavior.
+`:Set({CurrentValue = true})` updates the active state and calls `Callback` with the requested state; `:Set({CurrentBind = "F"})` updates the displayed bind. Setting `Active` is also supported for compatibility with button-bind configs. Loading a flagged toggle-bind restores its active state through the callback as well as restoring its key. `:Destroy()` disconnects the key listener. `CreateButtonBind` remains available as a backwards-compatible method.
 
 ### Toggle
 
