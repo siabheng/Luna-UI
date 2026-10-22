@@ -1128,6 +1128,7 @@ local IconModule = {
 		["crop"] = "http://www.roblox.com/asset/?id=6034328964";
 		["vignette"] = "http://www.roblox.com/asset/?id=6031734905";
 		["brightness_2"] = "http://www.roblox.com/asset/?id=6031488938";
+		["dark_mode"] = "http://www.roblox.com/asset/?id=6031488938";
 		["crop_square"] = "http://www.roblox.com/asset/?id=6031630222";
 		["looks_5"] = "http://www.roblox.com/asset/?id=6034412764";
 		["flip"] = "http://www.roblox.com/asset/?id=6034333275";
@@ -1611,13 +1612,15 @@ local function GetIcon(icon, source)
 		else
 			return "rbxassetid://10723434557"
 		end
-	else	
-		if icon ~= nil and IconModule[source] then
-			local sourceicon = IconModule[source]
-			return sourceicon[icon]
-		else
-			return nil
+	else
+		local sourceIcons = IconModule[source]
+		if sourceIcons == nil then
+			error("Icons: Unsupported image source \"" .. tostring(source) .. "\".", 2)
 		end
+		if icon == nil or sourceIcons[icon] == nil then
+			error(tostring(source) .. " Icons: Failed to find icon by the name of \"" .. tostring(icon) .. "\".", 2)
+		end
+		return sourceIcons[icon]
 	end
 end
 
