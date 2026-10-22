@@ -3054,9 +3054,6 @@ function Luna:CreateWindow(WindowSettings)
 				end
 
 				ApplyState(ButtonSettings.CurrentValue == true)
-				if ButtonSettings.CurrentValue then
-					Fire(true)
-				end
 
 				Bind.BindFrame.BindBox.Text = ButtonSettings.CurrentBind
 				Bind.BindFrame.BindBox.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 42)
@@ -3096,7 +3093,7 @@ function Luna:CreateWindow(WindowSettings)
 				end)
 
 				if ToggleInteract then
-					Interact.Visible = false
+					Interact:Destroy()
 					ToggleInteract.MouseButton1Click:Connect(function()
 						Fire(not ButtonV.Active)
 					end)
@@ -4971,9 +4968,6 @@ function Luna:CreateWindow(WindowSettings)
 			end
 
 			ApplyState(ButtonSettings.CurrentValue == true)
-			if ButtonSettings.CurrentValue then
-				Fire(true)
-			end
 
 			Bind.BindFrame.BindBox.Text = ButtonSettings.CurrentBind
 			Bind.BindFrame.BindBox.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 42)
@@ -5013,7 +5007,7 @@ function Luna:CreateWindow(WindowSettings)
 			end)
 
 			if ToggleInteract then
-				Interact.Visible = false
+				Interact:Destroy()
 				ToggleInteract.MouseButton1Click:Connect(function()
 					Fire(not ButtonV.Active)
 				end)
