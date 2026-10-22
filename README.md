@@ -2941,6 +2941,7 @@ function Luna:CreateWindow(WindowSettings)
 				Bind.Parent = TabPage
 
 				local ToggleSwitch
+				local ToggleInteract
 				if IsToggleBind then
 					ToggleSwitch = Elements.Template.Toggle.toggle:Clone()
 					local ToggleTemplate = Elements.Template.Toggle.toggle
@@ -2950,6 +2951,16 @@ function Luna:CreateWindow(WindowSettings)
 					ToggleSwitch.ZIndex = 3
 					ToggleSwitch.Active = false
 					ToggleSwitch.val.ZIndex = 4
+
+					ToggleInteract = Instance.new("TextButton")
+					ToggleInteract.Name = "ToggleInteract"
+					ToggleInteract.Text = ""
+					ToggleInteract.AutoButtonColor = false
+					ToggleInteract.BackgroundTransparency = 1
+					ToggleInteract.Size = ToggleSwitch.Size
+					ToggleInteract.AnchorPoint = ToggleSwitch.AnchorPoint
+					ToggleInteract.ZIndex = 5
+					ToggleInteract.Parent = Bind
 				end
 
 				Bind.Name = ButtonSettings.Name
@@ -3056,6 +3067,7 @@ function Luna:CreateWindow(WindowSettings)
 					Bind.BindFrame.Position = UDim2.new(1, -16, framePosition.Y.Scale, framePosition.Y.Offset)
 					Bind.BindFrame.Size = UDim2.new(0, keyWidth, 0, 30)
 					ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), framePosition.Y.Scale, framePosition.Y.Offset)
+					ToggleInteract.Position = ToggleSwitch.Position
 				end
 
 				Bind.BindFrame.BindBox.Focused:Connect(function()
@@ -3070,21 +3082,29 @@ function Luna:CreateWindow(WindowSettings)
 					end
 				end)
 
-				Interact["MouseEnter"]:Connect(function()
+				local HoverTarget = ToggleInteract or Interact
+				HoverTarget["MouseEnter"]:Connect(function()
 					if not ButtonV.Active then
 						tween(Bind.UIStroke, {Color = Color3.fromRGB(87, 84, 104)})
 					end
 				end)
 
-				Interact["MouseLeave"]:Connect(function()
+				HoverTarget["MouseLeave"]:Connect(function()
 					if not ButtonV.Active then
 						tween(Bind.UIStroke, {Color = Color3.fromRGB(64, 61, 76)})
 					end
 				end)
 
-				Interact.MouseButton1Click:Connect(function()
-					Fire(not ButtonV.Active)
-				end)
+				if ToggleInteract then
+					Interact.Visible = false
+					ToggleInteract.MouseButton1Click:Connect(function()
+						Fire(not ButtonV.Active)
+					end)
+				else
+					Interact.MouseButton1Click:Connect(function()
+						Fire(not ButtonV.Active)
+					end)
+				end
 
 				local KeyConnection = UserInputService.InputBegan:Connect(function(input, processed)
 
@@ -3145,6 +3165,7 @@ function Luna:CreateWindow(WindowSettings)
 					if ToggleSwitch then
 						TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, keyWidth, 0, 30)}):Play()
 						ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), Bind.BindFrame.Position.Y.Scale, Bind.BindFrame.Position.Y.Offset)
+						ToggleInteract.Position = ToggleSwitch.Position
 					else
 						TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 30)}):Play()
 					end
@@ -3181,6 +3202,7 @@ function Luna:CreateWindow(WindowSettings)
 					if ToggleSwitch then
 						Bind.BindFrame.Size = UDim2.new(0, keyWidth, 0, 30)
 						ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), Bind.BindFrame.Position.Y.Scale, Bind.BindFrame.Position.Y.Offset)
+						ToggleInteract.Position = ToggleSwitch.Position
 					else
 						Bind.BindFrame.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 42)
 					end
@@ -4836,6 +4858,7 @@ function Luna:CreateWindow(WindowSettings)
 			Bind.Parent = TabPage
 
 			local ToggleSwitch
+			local ToggleInteract
 			if IsToggleBind then
 				ToggleSwitch = Elements.Template.Toggle.toggle:Clone()
 				local ToggleTemplate = Elements.Template.Toggle.toggle
@@ -4845,6 +4868,16 @@ function Luna:CreateWindow(WindowSettings)
 				ToggleSwitch.ZIndex = 3
 				ToggleSwitch.Active = false
 				ToggleSwitch.val.ZIndex = 4
+
+				ToggleInteract = Instance.new("TextButton")
+				ToggleInteract.Name = "ToggleInteract"
+				ToggleInteract.Text = ""
+				ToggleInteract.AutoButtonColor = false
+				ToggleInteract.BackgroundTransparency = 1
+				ToggleInteract.Size = ToggleSwitch.Size
+				ToggleInteract.AnchorPoint = ToggleSwitch.AnchorPoint
+				ToggleInteract.ZIndex = 5
+				ToggleInteract.Parent = Bind
 			end
 
 			Bind.Name = ButtonSettings.Name
@@ -4951,6 +4984,7 @@ function Luna:CreateWindow(WindowSettings)
 				Bind.BindFrame.Position = UDim2.new(1, -16, framePosition.Y.Scale, framePosition.Y.Offset)
 				Bind.BindFrame.Size = UDim2.new(0, keyWidth, 0, 30)
 				ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), framePosition.Y.Scale, framePosition.Y.Offset)
+				ToggleInteract.Position = ToggleSwitch.Position
 			end
 
 			Bind.BindFrame.BindBox.Focused:Connect(function()
@@ -4965,21 +4999,29 @@ function Luna:CreateWindow(WindowSettings)
 				end
 			end)
 
-			Interact["MouseEnter"]:Connect(function()
+			local HoverTarget = ToggleInteract or Interact
+			HoverTarget["MouseEnter"]:Connect(function()
 				if not ButtonV.Active then
 					tween(Bind.UIStroke, {Color = Color3.fromRGB(87, 84, 104)})
 				end
 			end)
 
-			Interact["MouseLeave"]:Connect(function()
+			HoverTarget["MouseLeave"]:Connect(function()
 				if not ButtonV.Active then
 					tween(Bind.UIStroke, {Color = Color3.fromRGB(64, 61, 76)})
 				end
 			end)
 
-			Interact.MouseButton1Click:Connect(function()
-				Fire(not ButtonV.Active)
-			end)
+			if ToggleInteract then
+				Interact.Visible = false
+				ToggleInteract.MouseButton1Click:Connect(function()
+					Fire(not ButtonV.Active)
+				end)
+			else
+				Interact.MouseButton1Click:Connect(function()
+					Fire(not ButtonV.Active)
+				end)
+			end
 
 			local KeyConnection = UserInputService.InputBegan:Connect(function(input, processed)
 
@@ -5040,6 +5082,7 @@ function Luna:CreateWindow(WindowSettings)
 				if ToggleSwitch then
 					TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, keyWidth, 0, 30)}):Play()
 					ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), Bind.BindFrame.Position.Y.Scale, Bind.BindFrame.Position.Y.Offset)
+					ToggleInteract.Position = ToggleSwitch.Position
 				else
 					TweenService:Create(Bind.BindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 30)}):Play()
 				end
@@ -5076,6 +5119,7 @@ function Luna:CreateWindow(WindowSettings)
 				if ToggleSwitch then
 					Bind.BindFrame.Size = UDim2.new(0, keyWidth, 0, 30)
 					ToggleSwitch.Position = UDim2.new(1, -(keyWidth + 28), Bind.BindFrame.Position.Y.Scale, Bind.BindFrame.Position.Y.Offset)
+					ToggleInteract.Position = ToggleSwitch.Position
 				else
 					Bind.BindFrame.Size = UDim2.new(0, Bind.BindFrame.BindBox.TextBounds.X + 20, 0, 42)
 				end
